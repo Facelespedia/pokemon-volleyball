@@ -1,6 +1,6 @@
 package GameState;
 
-import TileMap.Background;
+import Map.Background;
 
 import java.awt.*;
 import java.awt.event.KeyEvent;
@@ -47,9 +47,7 @@ public class MenuState extends GameState {
 	
 	public void init() {}
 	
-	public void update() {
-		bg.update();
-	}
+
 	
 	public void draw(Graphics2D g) {
 		
@@ -59,7 +57,7 @@ public class MenuState extends GameState {
 		// draw title
 		g.setColor(titleColor);
 		g.setFont(titleFont);
-		g.drawString("Pokemon Valleyball", 40, 70);
+		g.drawString("Pokemon Volleyball", 40, 70);
 		
 		// draw menu options
 		g.setFont(font);
@@ -105,6 +103,11 @@ public class MenuState extends GameState {
 		}
 	}
 	public void keyReleased(int k) {}
+
+	@Override
+	public void update() {
+		bg.update();		
+	}
 	
 }
 
