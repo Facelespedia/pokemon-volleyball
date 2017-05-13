@@ -4,25 +4,17 @@ import java.awt.Color;
 import java.awt.Font;
 import java.awt.Graphics2D;
 
+import Entity.Ball;
 import Map.Background;
 
 public class PlayState extends GameState{
 	
 	Background bg;
+	Ball ball;
 
 	public PlayState (GameStateManager gsm) {
 		this.gsm = gsm;
-
-		try {
-
-			bg = new Background("/Backgrounds/playbg.gif", 1);
-
-
-		}
-		catch(Exception e) {
-			e.printStackTrace();
-		}
-
+		init();
 	}
 
 	@Override
@@ -34,13 +26,16 @@ public class PlayState extends GameState{
 	@Override
 	public void update() {
 		// TODO Auto-generated method stub
+		bg = new Background("/Backgrounds/playbg.gif", 1);
+		ball = new Ball();
+
 
 	}
 
 	@Override
 	public void draw(Graphics2D g) {
 		bg.draw(g);
-
+		ball.draw(g);
 	}
 
 	@Override
