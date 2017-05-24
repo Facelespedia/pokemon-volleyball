@@ -3,6 +3,7 @@ package Entity;
 import java.awt.Graphics2D;
 import java.awt.image.BufferedImage;
 import java.io.IOException;
+import java.util.ArrayList;
 
 import javax.imageio.ImageIO;
 import javax.swing.ImageIcon;
@@ -10,69 +11,134 @@ import javax.swing.ImageIcon;
 import GameState.GameState;
 import Main.GamePanel;
 
-public class Ball extends GameState {
-	
-	BufferedImage ball;
+public class Ball  {
 
+	
+	protected double x;
+	protected double y;
+	
+	protected int width;
+	protected int height;
+	protected boolean left;
+	protected boolean right;
+	protected boolean up;
+	protected boolean down;
+	
+	protected double moveSpeed;
+	protected double maxSpeed;
+	protected double stopSpeed;
+	protected double fallSpeed;
+	
+	
+	private static final int IDLE = 0;
+	private static final int WALKING = 1;
+	private static final int JUMPING = 2;
+	
+	BufferedImage b ;
+	
 	public Ball() {
+
+		
+
+	
+
+		double moveSpeed = 0.3;
+		double maxSpeed = 1.6;
+		double stopSpeed = 0.4;
+		
+		
+		
+
+		
 		try {
-			ball = ImageIO.read(
-					getClass().getResourceAsStream(
-							"/Sprites/Player/playersprites.gif"
-							)
-					);
+
+			b = ImageIO.read(
+				getClass().getResourceAsStream(
+					"/Backgrounds/ball.png"
+				)
+			);
+			
+			
+
+			
+
 		}
 		catch(Exception e) {
 			e.printStackTrace();
 		}
-		
+
+	
 	}
 	
+
+	
+
+	
+
+	private void getNextPosition() {
+
+		// movement
+		if(left) {
+			x -= moveSpeed;
+			if(x < -maxSpeed) {
+				x = -maxSpeed;
+			}
+		}
+		else if(right) {
+			x += moveSpeed;
+			if(x > maxSpeed) {
+				x = maxSpeed;
+			}
+		}
+		else {
+			if(x > 0) {
+				x -= stopSpeed;
+				if(x < 0) {
+					x = 0;
+				}
+			}
+			else if(x < 0) {
+				x += stopSpeed;
+				if(x > 0) {
+					x = 0;
+				}
+			}
+		}
+
+		
+		
+
+	
+		
+		
+
+	}
 	
 	public void setPosition(double x, double y) {
-		x = GamePanel.WIDTH;
-		y = GamePanel.HEIGHT;
+		this.x = x;
+		this.y = y;
 	}
 
-
-	@Override
-	public void init() {
-		// TODO Auto-generated method stub
-		
-	}
-
-
-	@Override
 	public void update() {
-		// TODO Auto-generated method stub
+
+		
+		getNextPosition() ;
+		
+		setPosition(x,y);
+
 		
 	}
 
-
-	@Override
 	public void draw(Graphics2D g) {
-		// TODO Auto-generated method stub
-		g.drawImage(ball,30,30,null);
+
 		
-	}
 
-
-	@Override
-	public void keyPressed(int k) {
-		// TODO Auto-generated method stub
 		
-	}
-
-
-	@Override
-	public void keyReleased(int k) {
-		// TODO Auto-generated method stub
+		g.drawImage(b,(int)x,(int)y,null);
+				
 		
-	}
-	
 
-	
-	
+}
 }
 
 
