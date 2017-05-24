@@ -8,30 +8,25 @@ import java.awt.*;
 import java.awt.image.BufferedImage;
 
 public class Player {
+	private double x;
+	private double y;
 	
+	private int width;
+	private int height;
 	
-	protected double x;
-	protected double y;
+	private boolean left;
+	private boolean right;
+	private boolean up;
+	private boolean down;
+	private boolean jumping;
 	
-	protected int width;
-	protected int height;
+	private double moveSpeed;
+	private double maxSpeed;
+	private double stopSpeed;
+	private double fallSpeed;
 	
-
-	
-	
-	protected boolean left;
-	protected boolean right;
-	protected boolean up;
-	protected boolean down;
-	protected boolean jumping;
-	
-	protected double moveSpeed;
-	protected double maxSpeed;
-	protected double stopSpeed;
-	protected double fallSpeed;
-	
-	protected double jumpStart;
-	protected double stopJumpSpeed;
+	private double jumpStart;
+	private double stopJumpSpeed;
 
 	private static final int IDLE = 0;
 	private static final int WALKING = 1;
