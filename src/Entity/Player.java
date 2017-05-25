@@ -69,6 +69,39 @@ public class Player {
 			e.printStackTrace();
 		}
 	}
+	
+	public Player(int num) {		
+		moveSpeed = 1.3;
+		maxSpeed = 1.6;
+		stopSpeed = 0.4;
+		fallSpeed = 0.15;
+		maxFallSpeed = 4.0;
+		jumpStart = -4.8;
+		stopJumpSpeed = 0.3;
+		
+		score = 0;
+		sb = new ScoreBoard();
+		
+		try {
+			if(num%2==0){
+				p = ImageIO.read(
+					getClass().getResourceAsStream(
+						"/Player/pikaP2.png"
+					)
+				);
+			}else {
+				p = ImageIO.read(
+					getClass().getResourceAsStream(
+						"/Player/pikaP1.png"
+					)
+				);
+			}
+		}
+		catch(Exception e) {
+			e.printStackTrace();
+		}
+	}
+	
 	public void setJumping(boolean b) {
 		jumping = b;
 	}
@@ -146,7 +179,6 @@ public class Player {
 				}
 			}
 		}
-		
 		return true;
 	}
 
