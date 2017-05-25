@@ -7,7 +7,7 @@
 * add Player 2 ตัว -> ทำแล้ว
 * add Ball -> ทำแล้ว
 * add กำแพง -> กูจ๊อบกำลังแก้
-* player movement -> ยังไม่ได้ทำ
+* player movement -> กูไบร้ทกำลังทำนะจ๊ะ
 * ball movement -> ยังไม่ได้ทำ
 * ball เด้ง player,กำแพง -> ยังไม่ได้ทำ
 * นับสกอชนะแพ้ -> ยังไม่ได้ทำ
