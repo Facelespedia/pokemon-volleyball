@@ -9,6 +9,7 @@ import java.awt.event.KeyEvent;
 import Entity.Ball;
 import Entity.Bound;
 import Entity.Player;
+import Entity.ScoreBoard;
 import Entity.Wall;
 import Main.GamePanel;
 import Map.Background;
@@ -22,6 +23,7 @@ public class PlayState extends GameState{
 	Ball b;
 	Wall w;
 	Bound bound;
+	ScoreBoard sb;
 
 	public PlayState (GameStateManager gsm) {
 		this.gsm = gsm;
@@ -31,6 +33,7 @@ public class PlayState extends GameState{
 	@Override
 	public void init() {
 		bg = new Background("/Backgrounds/grassbg1.gif", 0.1);
+		sb = new ScoreBoard();
 		p1 = new Player();
 		p1.setPosition(260, 190);
 		p2 = new Player();
@@ -47,7 +50,8 @@ public class PlayState extends GameState{
 		p1.update(bound);
 		p2.update(bound);
 		bound.update(p1.getX(), p1.getY(), p2.getX(), p2.getY());
-		b.update();
+		b.update(bound);
+		
 	}
 
 	@Override
@@ -57,6 +61,7 @@ public class PlayState extends GameState{
 		p2.draw(g);
 		b.draw(g);
 		w.draw(g);
+		sb.writeScore(g);
 	}
 
 	@Override
