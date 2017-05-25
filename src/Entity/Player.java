@@ -92,7 +92,7 @@ public class Player {
 	private void getNextPosition() {
 //		 movement
 		if(left) {
-			x -= moveSpeed;
+//			x -= moveSpeed;
 		}
 		else if(right) {
 			x += moveSpeed;
@@ -109,6 +109,10 @@ public class Player {
 		getNextPosition();
 		setPosition(x, y);
 	}
+	
+//	public boolean willOutOfBound(Bound b){
+//		
+//	}
 
 	public void draw(Graphics2D g) {
 		g.drawImage(p,(int)x,(int)y,null);
