@@ -4,7 +4,7 @@ import java.awt.Color;
 import java.awt.Font;
 import java.awt.Graphics2D;
 
-import com.sun.glass.events.KeyEvent;
+import java.awt.event.KeyEvent;
 
 import Entity.Ball;
 import Entity.Bound;
@@ -44,8 +44,8 @@ public class PlayState extends GameState{
 
 	@Override
 	public void update() {
-		p1.update();
-		p2.update();
+		p1.update(bound);
+		p2.update(bound);
 		bound.update(p1.getX(), p1.getY(), p2.getX(), p2.getY());
 		b.update();
 	}
@@ -61,46 +61,28 @@ public class PlayState extends GameState{
 
 	@Override
 	public void keyPressed(int k) {
-//		if(k == KeyEvent.VK_LEFT){
-//			System.out.println(WIDTH);
-//		}
-//		if(k == KeyEvent.VK_RIGHT) p1.setRight(true);
-//		if(k == KeyEvent.VK_UP) p1.setUp(true);
-//		if(k == KeyEvent.VK_DOWN) p1.setDown(true);
-//		
-//
-//		if(k == KeyEvent.VK_W) p2.setLeft(true);
-//		if(k == KeyEvent.VK_D) p2.setRight(true);
-//		if(k == KeyEvent.VK_A) p2.setUp(true);
-//		if(k == KeyEvent.VK_S) p2.setDown(true);
-		
+		if(k == KeyEvent.VK_LEFT) p1.setLeft(true);
+		if(k == KeyEvent.VK_RIGHT) p1.setRight(true);
+		if(k == KeyEvent.VK_UP) p1.setUp(true);
+		if(k == KeyEvent.VK_DOWN) p1.setDown(true);
+		if(k == KeyEvent.VK_DOWN) p1.setJumping(true);
+		if(k == KeyEvent.VK_A) p2.setLeft(true);
+		if(k == KeyEvent.VK_D) p2.setRight(true);
+		if(k == KeyEvent.VK_W) p2.setUp(true);
+		if(k == KeyEvent.VK_S) p2.setDown(true);
 	}
 
 	@Override
 	public void keyReleased(int k) {
-//		if(k == KeyEvent.VK_LEFT){
-//			System.out.println(bound.getHEIGHT() + " " + bound.getWIDTH() + " " + bound.getP1x());
-//		}
-//		if(k == KeyEvent.VK_RIGHT) p1.setRight(false);
-//		if(k == KeyEvent.VK_UP) p1.setUp(false);
-//		if(k == KeyEvent.VK_DOWN) p1.setDown(false);
-//		
-//
-//		if(k == KeyEvent.VK_W) p2.setLeft(false);
-//		if(k == KeyEvent.VK_D) p2.setRight(false);
-//		if(k == KeyEvent.VK_A) p2.setUp(false);
-//		if(k == KeyEvent.VK_S) p2.setDown(false);
-
+		if(k == KeyEvent.VK_LEFT){p1.setLeft(false);}
+		if(k == KeyEvent.VK_RIGHT) p1.setRight(false);
+		if(k == KeyEvent.VK_UP) p1.setUp(false);
+		if(k == KeyEvent.VK_DOWN) p1.setDown(false);
+		if(k == KeyEvent.VK_DOWN) p2.setJumping(true);
+		if(k == KeyEvent.VK_A){p2.setLeft(false);}
+		if(k == KeyEvent.VK_D) p2.setRight(false);
+		if(k == KeyEvent.VK_W) p2.setUp(false);
+		if(k == KeyEvent.VK_S) p2.setDown(false);
 	}
-
-	
-	
-	
-	
-	
-	
-	
-
-	
 
 }
