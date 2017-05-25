@@ -13,67 +13,59 @@ import Main.GamePanel;
 
 public class Ball  {
 
-	
+
 	protected double x;
 	protected double y;
-	
+
 	protected int width;
 	protected int height;
 	protected boolean left;
 	protected boolean right;
 	protected boolean up;
 	protected boolean down;
-	
+
 	protected double moveSpeed;
 	protected double maxSpeed;
 	protected double stopSpeed;
 	protected double fallSpeed;
-	
-	
+
+
 	private static final int IDLE = 0;
 	private static final int WALKING = 1;
 	private static final int JUMPING = 2;
-	
+
 	BufferedImage b ;
-	
+
 	public Ball() {
-
-		
-
-	
 
 		double moveSpeed = 0.3;
 		double maxSpeed = 1.6;
 		double stopSpeed = 0.4;
-		
-		
-		
 
-		
 		try {
 
 			b = ImageIO.read(
-				getClass().getResourceAsStream(
-					"/Ball/ball.png"
-				)
-			);
-			
-			
+					getClass().getResourceAsStream(
+							"/Ball/ball.png"
+							)
+					);
 
-			
+
+
+
 
 		}
 		catch(Exception e) {
 			e.printStackTrace();
 		}
 
-	
+
 	}
-	
 
-	
 
-	
+
+
+
 
 	private void getNextPosition() {
 
@@ -105,15 +97,15 @@ public class Ball  {
 			}
 		}
 
-		
-		
 
-	
-		
-		
+
+
+
+
+
 
 	}
-	
+
 	public void setPosition(double x, double y) {
 		this.x = x;
 		this.y = y;
@@ -121,29 +113,19 @@ public class Ball  {
 
 	public void update() {
 
-		
+
 		getNextPosition() ;
-		
+
 		setPosition(x,y);
 
-		
+
 	}
 
 	public void draw(Graphics2D g) {
 
-		
-
-		
 		g.drawImage(b,(int)x,(int)y,null);
-				
-		
 
-}
-}
-
-
-
-
+	}
 
 	//	private int bx = 50, by = 0;
 	//	private double dx = 1, dy = 1;
@@ -222,5 +204,5 @@ public class Ball  {
 	//			//change it location
 	//			setLocation(bx, by);
 	//		}
-	//	}
+}
 
