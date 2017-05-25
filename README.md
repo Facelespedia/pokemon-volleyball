@@ -9,7 +9,7 @@
 * add กำแพง -> ทำแล้ว
 * add bound -> ทำแล้ว
 * add ScoreBoard -> ทำแล้ว
-* player movement -> กูไบร้ทกำลังทำนะจ๊ะ
+* player movement -> จ๊อบทำอยู่
 * ball movement -> ทำแล้ว
 * ball เด้ง player,กำแพง -> ทำแล้ว
 * นับสกอ -> ทำแล้ว

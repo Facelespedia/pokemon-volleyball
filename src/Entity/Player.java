@@ -6,144 +6,116 @@ import java.awt.*;
 import java.awt.image.BufferedImage;
 
 public class Player {
-	private double x;
+	private double x,dx=0,dy=0;
 	private double y;
-	
-	private int width;
-	private int height;
-	
+	private final double FRICTION = 2 ,FRICTIONUP = 2, SPEED = 6 , SPEEDUP = 12;
 	private boolean left;
 	private boolean right;
 	private boolean up;
-	private boolean down;
-	private boolean idle;
-	private boolean hitting;
-	private boolean smashing;
-	private boolean jumping;
-	
-	private double moveSpeed;
-	private double maxSpeed;
-	private double stopSpeed;
-	private double fallSpeed;
-	private double maxFallSpeed;
-	private double jumpStart;
-	private double stopJumpSpeed;
 
-	private static final int IDLE = 0;
-	private static final int WALKING = 1;
-	private static final int JUMPING = 2;
-	private static final int HITTING = 3;
-	private static final int SMASHING = 4;
-	
-	private ArrayList<BufferedImage[]> sprites;
-	private final int[]numFrames = {
-			
-	};
-	
-	
-	ScoreBoard sb;
-	int score;
-	
-	BufferedImage p ;
+	private ScoreBoard sb;
+	private int score,num;
 
-	public Player() {		
-		moveSpeed = 1.3;
-		maxSpeed = 1.6;
-		stopSpeed = 0.4;
-		fallSpeed = 0.15;
-		maxFallSpeed = 4.0;
-		jumpStart = -4.8;
-		stopJumpSpeed = 0.3;
-		
-		score = 0;
-		sb = new ScoreBoard();
-		
-		try {
-			p = ImageIO.read(
-				getClass().getResourceAsStream(
-					"/Player/pika.png"
-				)
-			);
-		}
-		catch(Exception e) {
-			e.printStackTrace();
-		}
-	}
-	
+	private BufferedImage p ;
+
 	public Player(int num) {		
-		moveSpeed = 1.3;
-		maxSpeed = 1.6;
-		stopSpeed = 0.4;
-		fallSpeed = 0.15;
-		maxFallSpeed = 4.0;
-		jumpStart = -4.8;
-		stopJumpSpeed = 0.3;
-		
+
 		score = 0;
 		sb = new ScoreBoard();
-		
+		this.num = num;
 		try {
 			if(num%2==0){
 				p = ImageIO.read(
-					getClass().getResourceAsStream(
-						"/Player/pikaP2.png"
-					)
-				);
+						getClass().getResourceAsStream(
+								"/Player/pikaP2.png"
+								)
+						);		
 			}else {
 				p = ImageIO.read(
-					getClass().getResourceAsStream(
-						"/Player/pikaP1.png"
-					)
-				);
+						getClass().getResourceAsStream(
+								"/Player/pikaP1.png"
+								)
+						);
 			}
 		}
 		catch(Exception e) {
 			e.printStackTrace();
 		}
 	}
-	
-	public void setJumping(boolean b) {
-		jumping = b;
-	}
-	public void setSmashing(boolean b) {
-		smashing = b;
-	}
+
+	//	public void setJumping(boolean b) {
+	//		jumping = b;
+	//	}
+	//	public void setSmashing(boolean b) {
+	//		smashing = b;
+	//	}
 	public void setUp(boolean b) {
 		up = b;
 	}
-	public void setDown(boolean b) {
-		down = b;
-	}
+	//	public void setDown(boolean b) {
+	//		down = b;
+	//	}
 	public void setLeft(boolean b) {
 		left = b;
 	}
 	public void setRight(boolean b) {
 		right = b;
 	}
-	
+
 	public double getX() {
 		return this.x;
 	}
 	public double getY() {
 		return this.y;
 	}
-	
+
 	private void getNextPosition(Bound b) {
-//		 movement
-		if(left) {
-			if(willOutOfBound(b)){
-				x -= moveSpeed;
+		//		 movement
+		//		willOutOfBound(dx,b);
+		if(num == 1){
+			if(left && x + dx > 0 ) {
+				dx = SPEED*(-1);
 			}
-		} else if(right) {
-			if(willOutOfBound(b)){
-				x += moveSpeed;
+			else if(right && x + dx < b.getWx() - 50 ) {
+				dx = SPEED;
 			}
-		} else if(jumping){
-			y += 10;
+			if(up && dy ==0) {
+			   dy = SPEEDUP*(-1);
+			}
+			
+		}else {
+			if(left && x - dx > b.getWx() + 30 ) {
+				dx = SPEED*(-1);
+			}
+			else if(right && x + dx < b.getWIDTH() - 50) {
+				dx = SPEED;
+			}
+			if(up && dy ==0) {
+				dy = SPEEDUP*(-1);
+			}
+		}
+
+		if( dx > 0 ) dx -= FRICTION;
+		if( dx < 0 ) dx += FRICTION;
+		if( dy < 0 ) dy += FRICTIONUP;
+		if( dy > 0 ) dy -= FRICTIONUP;
+		
+		if(dy == 0 && y < 190 ) {
+			dy = SPEEDUP;
 		}
 		
+		x = (int)x + dx;
+		y = (int)y + dy;
+		
+		if(y > 190){
+			y=190;
+		}
+
+
+
+
 	}
-	
+
 	public void setPosition(double x, double y) {
 		this.x = x;
 		this.y = y;
@@ -153,41 +125,13 @@ public class Player {
 		getNextPosition(b);
 		setPosition(x, y);		
 	}
-	
-	public boolean willOutOfBound(Bound b){
-		if (0<x && x< b.getWx()-10){
-			if (left){
-				if(x-moveSpeed < 0){
-					return false;
-				}
-			}
-			else if (right){
-				if(x+moveSpeed+40 > b.getWx()-10){
-					return false;
-				}
-			}
-		}
-		if (x > b.getWx()+10 && x < b.getWIDTH()){
-			if (left){
-				if(x-moveSpeed-10 < b.getWx()+10){
-					return false;
-				}
-			}
-			else if (right){
-				if(x+moveSpeed+50 > b.getWIDTH()){
-					return false;
-				}
-			}
-		}
-		return true;
-	}
 
 	public void draw(Graphics2D g) {
 		g.drawImage(p,(int)x,(int)y,null);
 		sb.writeScore(g);
 	}
 
-	
+
 	public void setPosScore(int xPos,int yPos) {
 		sb.setScoreBoard(xPos, yPos);
 	}
@@ -195,17 +139,6 @@ public class Player {
 		score++;
 		sb.setScore(score);
 	}
-//	public int getScore() {
-//		return score;
-//	}
-	
 
-	
-//	public void setLeft(boolean b) { left = b; }
-//	public void setRight(boolean b) { right = b; }
-//	public void setUp(boolean b) { up = b; }
-//	public void setDown(boolean b) { down = b; }
-//	public void setJumping(boolean b) { jumping = b; }
-	
-	
+
 }
