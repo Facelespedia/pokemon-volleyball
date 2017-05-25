@@ -37,6 +37,9 @@ public class Player {
 	private static final int WALKING = 1;
 	private static final int JUMPING = 2;
 	
+	ScoreBoard sb;
+	int score;
+	
 	BufferedImage p ;
 
 	public Player() {
@@ -44,6 +47,9 @@ public class Player {
 		double moveSpeed = 0.3;
 		double maxSpeed = 1.6;
 		double stopSpeed = 0.4;
+		
+		score = 0;
+		sb = new ScoreBoard();
 		
 		try {
 
@@ -57,6 +63,8 @@ public class Player {
 		catch(Exception e) {
 			e.printStackTrace();
 		}
+		
+		
 	
 	}
 	
@@ -129,10 +137,21 @@ public class Player {
 
 		
 		g.drawImage(p,(int)x,(int)y,null);
-		
+		sb.writeScore(g);
 		
 
 }
+	
+	public void setPosScore(int xPos,int yPos) {
+		sb.setScoreBoard(xPos, yPos);
+	}
+	public void scoreUpdate() {
+		score++;
+		sb.setScore(score);
+	}
+//	public int getScore() {
+//		return score;
+//	}
 	
 
 	
