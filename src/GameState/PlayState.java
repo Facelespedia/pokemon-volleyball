@@ -47,7 +47,7 @@ public class PlayState extends GameState{
 		p1.update();
 		p2.update();
 		bound.update(p1.getX(), p1.getY(), p2.getX(), p2.getY());
-		b.update();
+		b.update(bound);
 	}
 
 	@Override

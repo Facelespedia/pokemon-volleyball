@@ -14,9 +14,9 @@ import Main.GamePanel;
 public class Ball  {
 
 	private BufferedImage b ;
-	private double x,y;
+	private static final double SPEED_BALL = 1.5;
+	private double x,y,dx,dy;
 
-	private static final double SPEED_BALL = 1.2;
 
 	//	private int width,height;
 	//	private boolean left,right,up,down;
@@ -46,22 +46,58 @@ public class Ball  {
 		catch(Exception e) {
 			e.printStackTrace();
 		}
+		
+		dx = SPEED_BALL;
+		dy = SPEED_BALL;
 
 	}
 
-	private void getNextPosition() {
+	private void getNextPosition(Bound b) {
 		
-		x += SPEED_BALL;
-		y += SPEED_BALL;
+		if (x < 0 || x > b.getWIDTH() - 30) {
+			dx = dx * (-1);
+		}
 		
-//		x += SPEED_BALL;
-//		y -= SPEED_BALL;
+		if (y < 0 || y > b.getHEIGHT() - 30) {
+			dy = dy * (-1);
+		}
+		
+//		if (y + 80 > b.getP1y() && 
+//				(x > b.getP1x() - 80 && x < b
+//						.getP1x() + 80)) {
+//			y = dy * (-1);
+//		}
 //		
-//		x -= SPEED_BALL;
-//		y += SPEED_BALL;
+//		else if ((x == b.getP1x()+100 || x +80 == b.getP1x()) && 
+//				(y + 80 > b.getP1y())) {
+//			dx = dx * (-1);
+//		}
 //		
-//		x -= SPEED_BALL;
-//		y -= SPEED_BALL;
+//		if (y + 80 > b.getP2y() && 
+//				(x > b.getP2x() - 80 && x < b.getP2x() + 80)) {
+//			y = dy * (-1);
+//		}
+//		
+//		else if ((x == b.getP2x()+100 || x +80 == b.getP2x()) && 
+//				(y + 80 > b.getP2y())) {
+//			dx = dx * (-1);
+//		}
+//		
+//		if (y + 100 == b.getWy()+ 6 &&
+//		   (x + 80 > b.getWy() && x < b.getWx() + 20)) {
+//			dy = dy * (-1);
+//			
+//		} else if ((x + 80 > b.getWx() && x < b.getWx() + 20)
+//				&& (y + 80 > b.getWy() && y + 80 < b.getWy() + 230)) {
+//			dx = dx * (-1);
+//		}
+
+		
+		
+//		System.out.println(dy);
+		x += dx;
+		y += dy;
+		
 
 	}
 
@@ -70,10 +106,10 @@ public class Ball  {
 		this.y = y;
 	}
 
-	public void update() {
+	public void update(Bound b) {
 
 
-		getNextPosition() ;
+		getNextPosition(b) ;
 
 		setPosition(x,y);
 
