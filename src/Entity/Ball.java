@@ -17,21 +17,6 @@ public class Ball  {
 	private static final double SPEED_BALL = 1.5;
 	private double x,y,dx,dy;
 
-
-	//	private int width,height;
-	//	private boolean left,right,up,down;
-	//	
-	//	private double moveSpeed,maxSpeed;
-	//	protected double stopSpeed;
-	//	protected double fallSpeed;
-	//
-	//
-	//	private static final int IDLE = 0;
-	//	private static final int WALKING = 1;
-	//	private static final int JUMPING = 2;
-	//
-
-
 	public Ball() {
 
 		try {
@@ -46,58 +31,42 @@ public class Ball  {
 		catch(Exception e) {
 			e.printStackTrace();
 		}
-		
+
 		dx = SPEED_BALL;
 		dy = SPEED_BALL;
 
 	}
 
 	private void getNextPosition(Bound b) {
-		
+
 		if (x < 0 || x > b.getWIDTH() - 30) {
 			dx = dx * (-1);
 		}
-		
+
 		if (y < 0 || y > b.getHEIGHT() - 30) {
 			dy = dy * (-1);
 		}
-		
-//		if (y + 80 > b.getP1y() && 
-//				(x > b.getP1x() - 80 && x < b
-//						.getP1x() + 80)) {
-//			y = dy * (-1);
-//		}
-//		
-//		else if ((x == b.getP1x()+100 || x +80 == b.getP1x()) && 
-//				(y + 80 > b.getP1y())) {
-//			dx = dx * (-1);
-//		}
-//		
-//		if (y + 80 > b.getP2y() && 
-//				(x > b.getP2x() - 80 && x < b.getP2x() + 80)) {
-//			y = dy * (-1);
-//		}
-//		
-//		else if ((x == b.getP2x()+100 || x +80 == b.getP2x()) && 
-//				(y + 80 > b.getP2y())) {
-//			dx = dx * (-1);
-//		}
-//		
-//		if (y + 100 == b.getWy()+ 6 &&
-//		   (x + 80 > b.getWy() && x < b.getWx() + 20)) {
-//			dy = dy * (-1);
-//			
-//		} else if ((x + 80 > b.getWx() && x < b.getWx() + 20)
-//				&& (y + 80 > b.getWy() && y + 80 < b.getWy() + 230)) {
-//			dx = dx * (-1);
-//		}
 
+		if ((y >= b.getWy() - 30 && y <= b.getWy()-28) && (x > b.getWx() - 30 && x < b.getWx() +30) ) {
+					dy = dy * (-1);
+		}else if ((x > b.getWx() - 30 && x < b.getWx() + 30) && (y > b.getWy())) {
+					dx = dx * (-1);
+		}
+
+		if (y > b.getP1y() - 10 && (x > b.getP1x() - 20 && x < b.getP1x() + 20)) {
+			dy = dy * (-1);
+		}else if ((x > b.getP1x() - 10 && x < b.getP1x() + 10) && (y > b.getP1y()-10)) {
+			dx = dx * (-1);
+		}
 		
-		
-//		System.out.println(dy);
+		if (y > b.getP2y() - 10 && (x > b.getP2x() - 20 && x < b.getP2x() + 20)) {
+			dy = dy * (-1);
+		}else if ((x > b.getP2x() - 10 && x < b.getP2x() + 10) && (y > b.getP2y()-10)) {
+			dx = dx * (-1);
+		}
+
 		x += dx;
-		y += dy;
-		
+		y += dy;		
 
 	}
 
