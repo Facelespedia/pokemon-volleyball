@@ -75,14 +75,22 @@ public class Ball  {
 		this.y = y;
 	}
 
-	public void update(Bound b ,Player p1,Player p2) {
+	public void update(Bound b ,Player p1,Player p2 , Ball ball) {
 
 		if(y < b.getHEIGHT() - 30){
 			getNextPosition(b) ;
 			setPosition(x,y);
 		}else {
-			if(x < b.getWIDTH()/2) p1.scoreUpdate();
-			else p2.scoreUpdate();
+			if(x < b.getWIDTH()/2) {
+				p1.scoreUpdate();
+				p1.setPosition(20, 190);
+				ball.setPosition(0, 50);
+			}
+			else {
+				p2.scoreUpdate();
+				p2.setPosition(260, 190);
+				ball.setPosition(270, 50);
+			}
 			getNextPosition(b) ;
 			setPosition(x,y);
 		}
