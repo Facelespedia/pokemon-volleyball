@@ -8,7 +8,7 @@ import java.awt.image.BufferedImage;
 public class Player {
 	private double x,dx=0,dy=0;
 	private double y;
-	private final double FRICTION = 1 , SPEED = 6;
+	private final double FRICTION = 2 ,FRICTIONUP = 2, SPEED = 6 , SPEEDUP = 12;
 	private boolean left;
 	private boolean right;
 	private boolean up;
@@ -79,8 +79,8 @@ public class Player {
 			else if(right && x + dx < b.getWx() - 50 ) {
 				dx = SPEED;
 			}
-			if(up) {
-			   dy = SPEED*(-1);
+			if(up && dy ==0) {
+			   dy = SPEEDUP*(-1);
 			}
 			
 		}else {
@@ -90,23 +90,26 @@ public class Player {
 			else if(right && x + dx < b.getWIDTH() - 50) {
 				dx = SPEED;
 			}
-			if(up) {
-				dy = SPEED*(-1);
+			if(up && dy ==0) {
+				dy = SPEEDUP*(-1);
 			}
 		}
 
 		if( dx > 0 ) dx -= FRICTION;
 		if( dx < 0 ) dx += FRICTION;
-		if( dy < 0 ) dy += FRICTION;
-		if( dy > 0 ) dy -= FRICTION;
+		if( dy < 0 ) dy += FRICTIONUP;
+		if( dy > 0 ) dy -= FRICTIONUP;
 		
-		if( dy == 0 && y < 190 ) {
-			y = 190;
+		if(dy == 0 && y < 190 ) {
+			dy = SPEEDUP;
 		}
 		
 		x = (int)x + dx;
 		y = (int)y + dy;
-
+		
+		if(y > 190){
+			y=190;
+		}
 
 
 
