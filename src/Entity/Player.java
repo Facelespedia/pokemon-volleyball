@@ -8,7 +8,7 @@ import java.awt.image.BufferedImage;
 public class Player {
 	private double x,dx=0,dy=0;
 	private double y;
-	private final double FRICTION = 2 ,FRICTIONUP = 2, SPEED = 6 , SPEEDUP = 12;
+	private final double FRICTION = 2 ,FRICTIONUP = 1, SPEED = 6 , SPEEDUP = 12;
 	private boolean left;
 	private boolean right;
 	private boolean up;
