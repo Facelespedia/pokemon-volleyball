@@ -9,6 +9,7 @@ public class Wall {
 
 	private double x,y;
 	BufferedImage w ;
+	
 	public Wall() {
 
 		try {
@@ -25,11 +26,20 @@ public class Wall {
 		}
 
 	}
+	
 	public void setPosition(double x, double y) {
 		this.x = x;
 		this.y = y;
 	}
-
+	
+	public double getX() {
+		return x;
+	}
+	
+	public double getY() {
+		return y;
+	}
+	
 	public void update() {
 
 		setPosition(x,y);
