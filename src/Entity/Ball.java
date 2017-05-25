@@ -54,7 +54,7 @@ public class Ball  {
 
 			b = ImageIO.read(
 				getClass().getResourceAsStream(
-					"/Backgrounds/ball.png"
+					"/Ball/ball.png"
 				)
 			);
 			
