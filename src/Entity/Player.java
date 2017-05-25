@@ -1,7 +1,5 @@
 package Entity;
 
-
-
 import java.util.ArrayList;
 import javax.imageio.ImageIO;
 import java.awt.*;
@@ -54,6 +52,13 @@ public class Player {
 	
 	}
 	
+	public double getX() {
+		return this.x;
+	}
+	public double getY() {
+		return this.y;
+	}
+	
 	private void getNextPosition() {
 		x += maxSpeed;
 		// movement
@@ -95,15 +100,8 @@ public class Player {
 	}
 
 	public void draw(Graphics2D g) {
-
-		
-
-		
 		g.drawImage(p,(int)x,(int)y,null);
-		
-		
-
-}
+	}
 	
 
 	
