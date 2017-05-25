@@ -8,7 +8,7 @@ import java.awt.image.BufferedImage;
 public class Player {
 	private double x,dx=0,dy=0;
 	private double y;
-	private final double FRICTION = 0.5 , SPEED = 4;
+	private final double FRICTION = 1 , SPEED = 6;
 	private boolean left;
 	private boolean right;
 	private boolean up;
@@ -79,6 +79,10 @@ public class Player {
 			else if(right && x + dx < b.getWx() - 50 ) {
 				dx = SPEED;
 			}
+			if(up) {
+			   dy = SPEED*(-1);
+			}
+			
 		}else {
 			if(left && x - dx > b.getWx() + 30 ) {
 				dx = SPEED*(-1);
@@ -86,12 +90,22 @@ public class Player {
 			else if(right && x + dx < b.getWIDTH() - 50) {
 				dx = SPEED;
 			}
+			if(up) {
+				dy = SPEED*(-1);
+			}
 		}
 
 		if( dx > 0 ) dx -= FRICTION;
 		if( dx < 0 ) dx += FRICTION;
-
+		if( dy < 0 ) dy += FRICTION;
+		if( dy > 0 ) dy -= FRICTION;
+		
+		if( dy == 0 && y < 190 ) {
+			y = 190;
+		}
+		
 		x = (int)x + dx;
+		y = (int)y + dy;
 
 
 
@@ -108,44 +122,6 @@ public class Player {
 		setPosition(x, y);		
 	}
 
-	public void willOutOfBound(double dx,Bound b){
-		//		
-		//		if(x + dx < 10) {
-		//			left = false;
-		//		}else 
-		//		if(x + dx < b.getWIDTH()/2) {
-		//			System.out.println("test");
-		//			right = false;
-		//		}
-
-		//		if (x > 0 && x< b.getWx()-10){
-		//			System.out.println(x);
-		//			if (left){
-		//				if(x-12 <= 0){
-		//					return false;
-		//				}
-		//			}
-		//			else if (right){
-		//				if(x > b.getWx()-10){
-		//					System.out.println("2");
-		//					return false;
-		//				}
-		//			}
-		//		}
-		//		if (x > b.getWx()+10 && x < b.getWIDTH()){
-		//			if (left){
-		//				if(x < b.getWx()+10){
-		//					return false;
-		//				}
-		//			}
-		//			else if (right){
-		//				if(x > b.getWIDTH()){
-		//					return false;
-		//				}
-		//			}
-		//		}
-		//		return true;
-	}
 
 	public void draw(Graphics2D g) {
 		g.drawImage(p,(int)x,(int)y,null);
