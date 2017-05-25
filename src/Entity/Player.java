@@ -7,7 +7,7 @@ import javax.imageio.ImageIO;
 import java.awt.*;
 import java.awt.image.BufferedImage;
 
-public class Player extends Object {
+public class Player {
 	
 	
 	protected double x;
@@ -38,20 +38,12 @@ public class Player extends Object {
 	private static final int JUMPING = 2;
 	
 	BufferedImage p ;
-	BufferedImage w ;
+
 	public Player() {
-
-		
-
-	
 
 		double moveSpeed = 0.3;
 		double maxSpeed = 1.6;
 		double stopSpeed = 0.4;
-		
-		
-		
-
 		
 		try {
 
@@ -60,20 +52,11 @@ public class Player extends Object {
 					"/Player/pika.png"
 				)
 			);
-			
-			w = ImageIO.read(
-					getClass().getResourceAsStream(
-						"/Wall/wall.jpg"
-					)
-				);
-
-			
 
 		}
 		catch(Exception e) {
 			e.printStackTrace();
 		}
-
 	
 	}
 	
@@ -142,7 +125,6 @@ public class Player extends Object {
 
 		
 		g.drawImage(p,(int)x,(int)y,null);
-		g.drawImage(w,150,160,null);
 		
 		
 
