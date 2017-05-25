@@ -46,7 +46,7 @@ public class GamePanel extends JPanel implements Runnable , KeyListener{
 
 		running = true;
 
-		gsm = new GameStateManager();
+		gsm = new GameStateManager();	
 
 	}
 
