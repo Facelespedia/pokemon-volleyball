@@ -95,14 +95,19 @@ public class Player {
 		return this.y;
 	}
 	
-	private void getNextPosition() {
+	private void getNextPosition(Bound b) {
 //		 movement
 		if(left) {
-			x -= moveSpeed;
+			if(willOutOfBound(b)){
+				x -= moveSpeed;
+			}
 		}
 		else if(right) {
-			x += moveSpeed;
+			if(willOutOfBound(b)){
+				x += moveSpeed;
+			}
 		}		
+		
 
 	}
 	
@@ -112,17 +117,37 @@ public class Player {
 	}
 
 	public void update(Bound b) {
-		if(willOutOfBound(b)){
-			getNextPosition();
-			setPosition(x, y);
-		}
+			getNextPosition(b);
+			setPosition(x, y);		
 	}
 	
 	public boolean willOutOfBound(Bound b){
-		if( x-moveSpeed > 25 &&  x+moveSpeed+25 < b.getWx()-10 || x-moveSpeed-25 > b.getWx()+10 && x+moveSpeed+25 < b.getWIDTH()-25 ){
-			return true;
+		if (0<x && x< b.getWx()-10){
+			if (left){
+				if(x-moveSpeed < 0){
+					return false;
+				}
+			}
+			else if (right){
+				if(x+moveSpeed+40 > b.getWx()-10){
+					return false;
+				}
+			}
 		}
-		return false;
+		if (x > b.getWx()+10 && x < b.getWIDTH()){
+			if (left){
+				if(x-moveSpeed-10 < b.getWx()+10){
+					return false;
+				}
+			}
+			else if (right){
+				if(x+moveSpeed+50 > b.getWIDTH()){
+					return false;
+				}
+			}
+		}
+		
+		return true;
 	}
 
 	public void draw(Graphics2D g) {
