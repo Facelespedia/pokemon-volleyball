@@ -8,6 +8,7 @@ import com.sun.glass.events.KeyEvent;
 
 import Entity.Ball;
 import Entity.Player;
+import Entity.Wall;
 import Map.Background;
 
 public class PlayState extends GameState{
@@ -16,6 +17,7 @@ public class PlayState extends GameState{
 	Player p1;
 	Player p2;
 	Ball b;
+	Wall w;
 
 	public PlayState (GameStateManager gsm) {
 		this.gsm = gsm;
@@ -29,8 +31,10 @@ public class PlayState extends GameState{
 		p1.setPosition(260, 190);
 		p2 = new Player();
 		p2.setPosition(20, 190);
-		b=new Ball();
+		b = new Ball();
 		b.setPosition(0, 50);
+		w = new Wall();
+		w.setPosition(150, 160);
 		
 
 	}
@@ -50,9 +54,7 @@ public class PlayState extends GameState{
 		p1.draw(g);
 		p2.draw(g);
 		b.draw(g);
-		
-		
-		
+		w.draw(g);
 	}
 
 	@Override
