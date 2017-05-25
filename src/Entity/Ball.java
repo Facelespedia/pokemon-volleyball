@@ -13,34 +13,26 @@ import Main.GamePanel;
 
 public class Ball  {
 
+	private BufferedImage b ;
+	private double x,y;
+	
+	private static final double SPEED_BALL = 1.2;
+	
+//	private int width,height;
+//	private boolean left,right,up,down;
+//	
+//	private double moveSpeed,maxSpeed;
+//	protected double stopSpeed;
+//	protected double fallSpeed;
+//
+//
+//	private static final int IDLE = 0;
+//	private static final int WALKING = 1;
+//	private static final int JUMPING = 2;
+//
 
-	protected double x;
-	protected double y;
-
-	protected int width;
-	protected int height;
-	protected boolean left;
-	protected boolean right;
-	protected boolean up;
-	protected boolean down;
-
-	protected double moveSpeed;
-	protected double maxSpeed;
-	protected double stopSpeed;
-	protected double fallSpeed;
-
-
-	private static final int IDLE = 0;
-	private static final int WALKING = 1;
-	private static final int JUMPING = 2;
-
-	BufferedImage b ;
 
 	public Ball() {
-
-		double moveSpeed = 0.3;
-		double maxSpeed = 1.6;
-		double stopSpeed = 0.4;
 
 		try {
 
@@ -68,40 +60,38 @@ public class Ball  {
 
 
 	private void getNextPosition() {
-
+		
+		
+		x += SPEED_BALL;
+		y += SPEED_BALL;
+		
 		// movement
-		if(left) {
-			x -= moveSpeed;
-			if(x < -maxSpeed) {
-				x = -maxSpeed;
-			}
-		}
-		else if(right) {
-			x += moveSpeed;
-			if(x > maxSpeed) {
-				x = maxSpeed;
-			}
-		}
-		else {
-			if(x > 0) {
-				x -= stopSpeed;
-				if(x < 0) {
-					x = 0;
-				}
-			}
-			else if(x < 0) {
-				x += stopSpeed;
-				if(x > 0) {
-					x = 0;
-				}
-			}
-		}
-
-
-
-
-
-
+//		if(left) {
+//			x -= moveSpeed;
+//			if(x < -maxSpeed) {
+//				x = -maxSpeed;
+//			}
+//		}
+//		else if(right) {
+//			x += moveSpeed;
+//			if(x > maxSpeed) {
+//				x = maxSpeed;
+//			}
+//		}
+//		else {
+//			if(x > 0) {
+//				x -= stopSpeed;
+//				if(x < 0) {
+//					x = 0;
+//				}
+//			}
+//			else if(x < 0) {
+//				x += stopSpeed;
+//				if(x > 0) {
+//					x = 0;
+//				}
+//			}
+//		}
 
 
 	}

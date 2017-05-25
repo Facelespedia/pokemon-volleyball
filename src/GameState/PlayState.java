@@ -35,8 +35,6 @@ public class PlayState extends GameState{
 		b.setPosition(0, 50);
 		w = new Wall();
 		w.setPosition(150, 160);
-		
-
 	}
 
 	@Override
@@ -44,8 +42,6 @@ public class PlayState extends GameState{
 		p1.update();
 		p2.update();
 		b.update();
-
-
 	}
 
 	@Override
