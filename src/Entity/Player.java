@@ -35,7 +35,6 @@ public class Player {
 	BufferedImage p ;
 
 	public Player() {
-
 		double moveSpeed = 0.3;
 		double maxSpeed = 1.6;
 		double stopSpeed = 0.4;
@@ -55,13 +54,8 @@ public class Player {
 	
 	}
 	
-
-	
-
-	
-
 	private void getNextPosition() {
-
+		x += maxSpeed;
 		// movement
 //		if(left) {
 //			x -= moveSpeed;
@@ -89,14 +83,6 @@ public class Player {
 //				}
 //			}
 //		}
-
-		
-		
-
-	
-		
-		
-
 	}
 	
 	public void setPosition(double x, double y) {
@@ -105,13 +91,7 @@ public class Player {
 	}
 
 	public void update() {
-
-		
-//		getNextPosition() ;
-		
-		setPosition(x,y);
-
-		
+		getNextPosition() ;
 	}
 
 	public void draw(Graphics2D g) {
