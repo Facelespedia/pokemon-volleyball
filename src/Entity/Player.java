@@ -57,13 +57,13 @@ public class Player extends Object {
 
 			p = ImageIO.read(
 				getClass().getResourceAsStream(
-					"/Backgrounds/pika.png"
+					"/Player/pika.png"
 				)
 			);
 			
 			w = ImageIO.read(
 					getClass().getResourceAsStream(
-						"/Backgrounds/wall.jpg"
+						"/Wall/wall.jpg"
 					)
 				);
 
@@ -85,32 +85,32 @@ public class Player extends Object {
 	private void getNextPosition() {
 
 		// movement
-		if(left) {
-			x -= moveSpeed;
-			if(x < -maxSpeed) {
-				x = -maxSpeed;
-			}
-		}
-		else if(right) {
-			x += moveSpeed;
-			if(x > maxSpeed) {
-				x = maxSpeed;
-			}
-		}
-		else {
-			if(x > 0) {
-				x -= stopSpeed;
-				if(x < 0) {
-					x = 0;
-				}
-			}
-			else if(x < 0) {
-				x += stopSpeed;
-				if(x > 0) {
-					x = 0;
-				}
-			}
-		}
+//		if(left) {
+//			x -= moveSpeed;
+//			if(x < -maxSpeed) {
+//				x = -maxSpeed;
+//			}
+//		}
+//		else if(right) {
+//			x += moveSpeed;
+//			if(x > maxSpeed) {
+//				x = maxSpeed;
+//			}
+//		}
+//		else {
+//			if(x > 0) {
+//				x -= stopSpeed;
+//				if(x < 0) {
+//					x = 0;
+//				}
+//			}
+//			else if(x < 0) {
+//				x += stopSpeed;
+//				if(x > 0) {
+//					x = 0;
+//				}
+//			}
+//		}
 
 		
 		
@@ -129,7 +129,7 @@ public class Player extends Object {
 	public void update() {
 
 		
-		getNextPosition() ;
+//		getNextPosition() ;
 		
 		setPosition(x,y);
 
@@ -150,11 +150,11 @@ public class Player extends Object {
 	
 
 	
-	public void setLeft(boolean b) { left = b; }
-	public void setRight(boolean b) { right = b; }
-	public void setUp(boolean b) { up = b; }
-	public void setDown(boolean b) { down = b; }
-	public void setJumping(boolean b) { jumping = b; }
+//	public void setLeft(boolean b) { left = b; }
+//	public void setRight(boolean b) { right = b; }
+//	public void setUp(boolean b) { up = b; }
+//	public void setDown(boolean b) { down = b; }
+//	public void setJumping(boolean b) { jumping = b; }
 	
 	
 }
