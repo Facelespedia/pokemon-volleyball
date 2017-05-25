@@ -81,8 +81,16 @@ public class Ball  {
 			getNextPosition(b) ;
 			setPosition(x,y);
 		}else {
-			if(x < b.getWIDTH()/2) p1.scoreUpdate();
-			else p2.scoreUpdate();
+			if(x < b.getWIDTH()/2) {
+				p1.scoreUpdate();
+				p1.setPosition(20, 190);
+				p2.setPosition(260, 190);
+			}
+			else {
+				p2.scoreUpdate();
+				p1.setPosition(20, 190);
+				p2.setPosition(260, 190);
+			}
 			getNextPosition(b) ;
 			setPosition(x,y);
 		}

@@ -136,11 +136,9 @@ public class Player {
 			}
 		} else if(right) {
 			if(willOutOfBound(b)){
-				System.out.println("right");
 				x += moveSpeed;
 			}
 		} else if(jumping){
-			System.out.println("Jump");
 			y += 10;
 		}
 		
@@ -152,8 +150,8 @@ public class Player {
 	}
 
 	public void update(Bound b) {
-			getNextPosition(b);
-			setPosition(x, y);		
+		getNextPosition(b);
+		setPosition(x, y);		
 	}
 	
 	public boolean willOutOfBound(Bound b){
