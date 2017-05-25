@@ -41,16 +41,22 @@ public class Player {
 	};
 	
 	
+	ScoreBoard sb;
+	int score;
+	
 	BufferedImage p ;
 
 	public Player() {		
-		moveSpeed = 0.3;
+		moveSpeed = 1.3;
 		maxSpeed = 1.6;
 		stopSpeed = 0.4;
 		fallSpeed = 0.15;
 		maxFallSpeed = 4.0;
 		jumpStart = -4.8;
 		stopJumpSpeed = 0.3;
+		
+		score = 0;
+		sb = new ScoreBoard();
 		
 		try {
 			p = ImageIO.read(
@@ -92,7 +98,7 @@ public class Player {
 	private void getNextPosition() {
 //		 movement
 		if(left) {
-//			x -= moveSpeed;
+			x -= moveSpeed;
 		}
 		else if(right) {
 			x += moveSpeed;
@@ -106,17 +112,35 @@ public class Player {
 	}
 
 	public void update(Bound b) {
-		getNextPosition();
-		setPosition(x, y);
+		if(willOutOfBound(b)){
+			getNextPosition();
+			setPosition(x, y);
+		}
 	}
 	
-//	public boolean willOutOfBound(Bound b){
-//		
-//	}
+	public boolean willOutOfBound(Bound b){
+		if( x-moveSpeed > 25 &&  x+moveSpeed+25 < b.getWx()-10 || x-moveSpeed-25 > b.getWx()+10 && x+moveSpeed+25 < b.getWIDTH()-25 ){
+			return true;
+		}
+		return false;
+	}
 
 	public void draw(Graphics2D g) {
 		g.drawImage(p,(int)x,(int)y,null);
+		sb.writeScore(g);
 	}
+
+	
+	public void setPosScore(int xPos,int yPos) {
+		sb.setScoreBoard(xPos, yPos);
+	}
+	public void scoreUpdate() {
+		score++;
+		sb.setScore(score);
+	}
+//	public int getScore() {
+//		return score;
+//	}
 	
 
 	
