@@ -134,14 +134,16 @@ public class Player {
 			if(willOutOfBound(b)){
 				x -= moveSpeed;
 			}
-		}
-		else if(right) {
+		} else if(right) {
 			if(willOutOfBound(b)){
+				System.out.println("right");
 				x += moveSpeed;
 			}
-		}		
+		} else if(jumping){
+			System.out.println("Jump");
+			y += 10;
+		}
 		
-
 	}
 	
 	public void setPosition(double x, double y) {
