@@ -9,9 +9,9 @@
 * add กำแพง -> ทำแล้ว
 * add bound -> ทำแล้ว
 * add ScoreBoard -> ทำแล้ว
-* player movement -> จ๊อบทำอยู่
-* ball movement -> ทำแล้ว
-* ball เด้ง player,กำแพง -> ทำแล้ว
+* player movement -> ทำแล้ว (wait modify)
+* ball movement -> ทำแล้ว (wait modify)
+* ball เด้ง player,กำแพง -> ทำแล้ว (wait modify)
 * นับสกอ -> ทำแล้ว
 * เริ่มใหม่เมื่อได้ score -> ยังไม่ได้ทำ
 * จบเกม -> ยังไม่ได้ทำ
