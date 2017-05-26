@@ -178,10 +178,6 @@ public class Ball  {
 
 	}
 
-	public double randomXPos() {
-		return 5 + (Math.random() * (280 - 5));
-	}
-
 	public void setState(boolean r) {
 		this.restate = r;
 		dx = SPEED_BALL;
