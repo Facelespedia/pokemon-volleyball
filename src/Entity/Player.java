@@ -127,7 +127,10 @@ public class Player {
 		score++;
 		sb.setScore(score);
 	}
+<<<<<<< HEAD
+=======
 	
+>>>>>>> master
 	public int getScore() {
 		return score;
 	}

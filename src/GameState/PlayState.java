@@ -29,13 +29,13 @@ public class PlayState extends GameState{
 	Ball b;
 	Wall w;
 	Bound bound;
+	int scoreP1,scoreP2;
 	Command cm;
 	private long startTime;
 	private long timeInGame;
 	private List<Command> commands = new ArrayList<Command>();
 	public static final long DELAY = 10;
 	public static final int sPosX1 = 20,sPosY1 = 190,sPosX2 = 260,sPosY2 = 190,sPosXb = 0,sPosYb=20,sPosXw=150,sPosYw=160;
-
 
 	public PlayState (GameStateManager gsm) {
 		this.gsm = gsm;
@@ -97,27 +97,37 @@ public class PlayState extends GameState{
 		p2.update(bound);
 		bound.update(p1.getX(), p1.getY(), p2.getX(), p2.getY());
 		b.update(bound,p1,p2,b);
+		scoreP1 = p1.getScore();
+		scoreP2 = p2.getScore();
+		
+		if(scoreP1==5){
+			EndState es = (EndState) gsm.getState(GameStateManager.ENDSTATE);
+			es.setP1Win(true);
+			gsm.setState(GameStateManager.ENDSTATE);
+		}else if (scoreP2==5){
+			EndState es = (EndState) gsm.getState(GameStateManager.ENDSTATE);
+			es.setP2Win(true);
+			gsm.setState(GameStateManager.ENDSTATE);
+		}
 	}
 
 	public void startReplay() {
-		
-			timeInGame = System.currentTimeMillis() - startTime;
-			if(!commands.isEmpty()) {
-				Command c = commands.get(0);
-				if( timeInGame >= c.getTimeInGame()) {
-					commands.remove(c);
-					c.execute(p1);
-					c.Noexecute(p1);
-					System.out.println(c);
-					//					c.execute(p2);
-				}
+		timeInGame = System.currentTimeMillis() - startTime;
+		if(!commands.isEmpty()) {
+			Command c = commands.get(0);
+			if( timeInGame >= c.getTimeInGame()) {
+				commands.remove(c);
+				c.execute(p1);
+				c.Noexecute(p1);
+				System.out.println(c);
+				//					c.execute(p2);
 			}
-			p1.update(bound);
-			p2.update(bound);
-			bound.update(p1.getX(), p1.getY(), p2.getX(), p2.getY());
-			b.update(bound,p1,p2,b);
-			delay();
-		
+		}
+		p1.update(bound);
+		p2.update(bound);
+		bound.update(p1.getX(), p1.getY(), p2.getX(), p2.getY());
+		b.update(bound,p1,p2,b);
+		delay();
 	}
 
 	@Override
