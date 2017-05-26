@@ -30,7 +30,6 @@ public class EndState extends GameState{
 	boolean p1win=false , p2win=false;
 	private Color titleColor;
 	private Font titleFont;
-	private Font font;
 	
 	public EndState(GameStateManager gsm){
 		this.gsm = gsm;
@@ -56,9 +55,8 @@ public class EndState extends GameState{
 			titleFont = new Font(
 					"Century Gothic",
 					Font.PLAIN,
-					28);
+					10);
 			
-			font = new Font("Arial", Font.PLAIN, 12);
 		}catch(Exception e) {
 			e.printStackTrace();
 		}
@@ -81,6 +79,8 @@ public class EndState extends GameState{
 			g.drawImage(winner, null, 0, 180);
 			g.drawImage(loser, null, 160, 180);
 		}
+		g.setColor(titleColor);
+		g.setFont(titleFont);
 		g.drawString("Press backspace go to main menu", 5, 230);
 	}
 	public void keyPressed(int k){

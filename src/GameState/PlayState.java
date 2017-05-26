@@ -35,7 +35,7 @@ public class PlayState extends GameState{
 	private long timeInGame;
 	private List<Command> commands = new ArrayList<Command>();
 	public static final long DELAY = 10;
-	public static final int sPosX1 = 20,sPosY1 = 190,sPosX2 = 260,sPosY2 = 190,sPosXb = 0,sPosYb=20,sPosXw=150,sPosYw=160;
+	public static final int sPosX1 = 20,sPosY1 = 210,sPosX2 = 260,sPosY2 = 210,sPosXb = 0,sPosYb=20,sPosXw=150,sPosYw=160;
 
 	public PlayState (GameStateManager gsm) {
 		this.gsm = gsm;
@@ -63,8 +63,6 @@ public class PlayState extends GameState{
 	boolean replay = true;
 	@Override
 	public void update() {
-		
-		
 		if(p1.getScore() < 5 && p2.getScore() < 5 && end) {
 			timeInGame = System.currentTimeMillis() - startTime;
 			if(b.resetState()) {
