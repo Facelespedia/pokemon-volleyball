@@ -44,7 +44,6 @@ public class PlayState extends GameState{
 	public static final long DELAY = 10;
 	public static final int sPosX1 = 20,sPosY1 = 210,sPosX2 = 260,sPosY2 = 210,sPosYb=20,sPosXw=150,sPosYw=160;
 	int sPosXb=0;
-	int count =0;
 	public PlayState (GameStateManager gsm) {
 		this.gsm = gsm;
 		startTime = System.currentTimeMillis();
@@ -74,9 +73,10 @@ public class PlayState extends GameState{
 	@Override
 	public void update() {
 
-		if(p1.getScore() < 5 && p2.getScore() < 5 && end) {	
+		if(p1.getScore() < 2 && p2.getScore() < 2 && end) {	
 			if(b.resetState()) {
 				sPosXb = (int)b.randomXPos();
+				System.out.println(sPosXb);
 				cb = new CommandBall(timeInGame,sPosXb,sPosYb);
 				System.out.println("ball1 : " + timeInGame);
 				commandsBall.add(cb);
@@ -96,11 +96,11 @@ public class PlayState extends GameState{
 				startReplay();
 				scoreP1 = p1.getScore();
 				scoreP2 = p2.getScore();
-				if(scoreP1==5){
+				if(scoreP1==2){
 					EndState es = (EndState) gsm.getState(GameStateManager.ENDSTATE);
 					es.setP1Win(true);
 					gsm.setState(GameStateManager.ENDSTATE);
-				}else if (scoreP2==5){
+				}else if (scoreP2==2){
 					EndState es = (EndState) gsm.getState(GameStateManager.ENDSTATE);
 					es.setP2Win(true);
 					gsm.setState(GameStateManager.ENDSTATE);
@@ -127,35 +127,39 @@ public class PlayState extends GameState{
 
 		if(!commandsP1.isEmpty()) {
 			Command c = commandsP1.get(0);
-			if( timeInGame >= c.getTimeInGame()) {
+			if( timeInGame == c.getTimeInGame()) {
 				commandsP1.remove(c);
 				c.execute(p1);
 				System.out.println("time replay P1 : " + timeInGame);
-				p1.update(bound);
+				
 			}
 		}
 		if(!commandsP2.isEmpty()) {
 			Command c = commandsP2.get(0);
-			if( timeInGame >= c.getTimeInGame()) {
+			if( timeInGame == c.getTimeInGame()) {
 				commandsP2.remove(c);
 				c.execute(p2);
 				System.out.println("time replay P2 : " + timeInGame);
-				p2.update(bound);
+				
 			}
 			
 		}
 		if(!commandsBall.isEmpty()) {
-			CommandBall c = commandsBall.get(0);
-			if( timeInGame >= c.getTimeInGame()) {
+			CommandBall c = commandsBall.get(commandsBall.size()-1);
+			if( timeInGame == c.getTimeInGame()) {
 				commandsBall.remove(c);
 				c.execute(b);
+//				System.out.println("ball bs : " + c.getX());
 				System.out.println("ball2 : " + c.getTimeInGame());
 			}
 		}
-		count++;
-		timeInGame++;
-		bound.update(p1.getX(), p1.getY(), p2.getX(), p2.getY());
+		p1.update(bound);
+		p2.update(bound);
 		b.update(bound,p1,p2,b);
+		bound.update(p1.getX(), p1.getY(), p2.getX(), p2.getY());
+		timeInGame++;
+
+		
 	}
 
 	@Override
@@ -250,12 +254,5 @@ public class PlayState extends GameState{
 		}
 	}
 
-	private void delay() {
-		try {
-			Thread.sleep(DELAY);
-		} catch (InterruptedException e) {
-			e.printStackTrace();
-		}
-	}
 
 }
