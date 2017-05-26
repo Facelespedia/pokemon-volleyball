@@ -17,7 +17,7 @@ public class CommandBall {
 		return timeInGame;
 	}
 	public void execute(Ball b) {
-		b.setPosition(x, y);
+		b.setPosition(this.x, this.y);
 	}
 	
 
