@@ -163,6 +163,14 @@ public class Ball  {
 		g.drawImage(b,(int)x,(int)y,null);
 
 	}
+	
+	public double getX() {
+		return x;
+	}
+	
+	public double getY() {
+		return y;
+	}
 
 }
 

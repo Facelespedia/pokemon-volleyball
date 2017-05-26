@@ -33,7 +33,8 @@ public class PlayState extends GameState{
 	Command cm;
 	private long startTime;
 	private long timeInGame;
-	private List<Command> commands = new ArrayList<Command>();
+	private List<Command> commandsP1 = new ArrayList<Command>();
+	private List<Command> commandsP2 = new ArrayList<Command>();
 	public static final long DELAY = 10;
 	public static final int sPosX1 = 20,sPosY1 = 190,sPosX2 = 260,sPosY2 = 190,sPosXb = 0,sPosYb=20,sPosXw=150,sPosYw=160;
 
@@ -112,26 +113,34 @@ public class PlayState extends GameState{
 	int count =0;
 	public void startReplay() {
 		timeInGame = System.currentTimeMillis() - startTime;
-		if(!commands.isEmpty()) {
-			Command c = commands.get(0);
+		if(!commandsP1.isEmpty()) {
+			Command c = commandsP1.get(0);
 			if( timeInGame >= c.getTimeInGame()) {
-				commands.remove(c);
+				commandsP1.remove(c);
 				if(count%2==0){
 					c.execute(p1,true);
 				}else{
 					c.execute(p1,false);
 				}
-				count++;
-				//c.Noexecute(p1);
-				System.out.println(c);
+
 			}
 		}
+		if(!commandsP2.isEmpty()) {
+			Command c = commandsP2.get(0);
+			if( timeInGame >= c.getTimeInGame()) {
+				commandsP2.remove(c);
+				if(count%2==0){
+					c.execute(p2,true);
+				}else{
+					c.execute(p2,false);
+				}
+			}
+		}
+		count++;
 		p1.update(bound);
-//		p1.update(bound);
-//		p1.update(bound);
-//		p2.update(bound);
-//		bound.update(p1.getX(), p1.getY(), p2.getX(), p2.getY());
-//		b.update(bound,p1,p2,b);
+		p2.update(bound);
+		bound.update(p1.getX(), p1.getY(), p2.getX(), p2.getY());
+		b.update(bound,p1,p2,b);
 //		delay();
 	}
 
@@ -150,32 +159,32 @@ public class PlayState extends GameState{
 		if(k == KeyEvent.VK_A) {
 			cm = new CommandLeft(timeInGame);
 			cm.execute(p1,true);
-			commands.add(cm);
+			commandsP1.add(cm);
 		}
 		if(k == KeyEvent.VK_D) {
 			cm = new CommandRight(timeInGame);
 			cm.execute(p1,true);
-			commands.add(cm);
+			commandsP1.add(cm);
 		}
 		if(k == KeyEvent.VK_W) {
 			cm = new CommandJump(timeInGame);
 			cm.execute(p1,true);
-			commands.add(cm);
+			commandsP1.add(cm);
 		}
 		if(k == KeyEvent.VK_LEFT) {
 			cm = new CommandLeft(timeInGame);
 			cm.execute(p2,true);
-			//commands.add(cm);
+			commandsP2.add(cm);
 		}
 		if(k == KeyEvent.VK_RIGHT) {
 			cm = new CommandRight(timeInGame);
 			cm.execute(p2,true);
-			//commands.add(cm);
+			commandsP2.add(cm);
 		}
 		if(k == KeyEvent.VK_UP) {
 			cm = new CommandJump(timeInGame);
 			cm.execute(p2,true);
-			//commands.add(cm);
+			commandsP2.add(cm);
 		}
 	}
 
@@ -184,21 +193,33 @@ public class PlayState extends GameState{
 		if(k == KeyEvent.VK_A) {
 			cm = new CommandLeft(timeInGame);
 			cm.execute(p1,false);
-			commands.add(cm);
+			commandsP1.add(cm);
 		}
 		if(k == KeyEvent.VK_D) {
 			cm = new CommandRight(timeInGame);
 			cm.execute(p1,false);
-			commands.add(cm);
+			commandsP1.add(cm);
 		}
 		if(k == KeyEvent.VK_W) {
 			cm = new CommandJump(timeInGame);
 			cm.execute(p1,false);
-			commands.add(cm);
+			commandsP1.add(cm);
 		}
-		if(k == KeyEvent.VK_LEFT) p2.setLeft(false);
-		if(k == KeyEvent.VK_RIGHT) p2.setRight(false);
-		if(k == KeyEvent.VK_UP) p2.setUp(false);
+		if(k == KeyEvent.VK_LEFT) {
+			cm = new CommandLeft(timeInGame);
+			cm.execute(p2,false);
+			commandsP2.add(cm);
+		}
+		if(k == KeyEvent.VK_RIGHT) {
+			cm = new CommandRight(timeInGame);
+			cm.execute(p2,false);
+			commandsP2.add(cm);
+		}
+		if(k == KeyEvent.VK_UP) {
+			cm = new CommandJump(timeInGame);
+			cm.execute(p2,false);
+			commandsP2.add(cm);
+		}
 	}
 
 	private void delay() {
