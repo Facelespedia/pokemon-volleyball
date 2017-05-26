@@ -1,7 +1,6 @@
 package GameState;
 
-import java.awt.Color;
-import java.awt.Font;
+
 import java.awt.Graphics2D;
 
 import java.awt.event.KeyEvent;
@@ -16,7 +15,6 @@ import Command.CommandRight;
 import Entity.Ball;
 import Entity.Bound;
 import Entity.Player;
-import Entity.ScoreBoard;
 import Entity.Wall;
 import Main.GamePanel;
 import Map.Background;
@@ -35,7 +33,6 @@ public class PlayState extends GameState{
 	int scoreP1,scoreP2;
 	boolean end;
 	boolean replay;
-	private long startTime;
 	private long timeInGame;
 	private List<Command> commandsP1 = new ArrayList<Command>();
 	private List<Command> commandsP2 = new ArrayList<Command>();
@@ -46,7 +43,6 @@ public class PlayState extends GameState{
 	int sPosXb=0;
 	public PlayState (GameStateManager gsm) {
 		this.gsm = gsm;
-		startTime = System.currentTimeMillis();
 		init();
 	}
 
@@ -83,6 +79,10 @@ public class PlayState extends GameState{
 				resetState();
 				b.setState(false);
 			}else {
+				if(timeInGame == 0){
+					cb = new CommandBall(timeInGame,0,20);
+					commandsBall.add(cb);
+				}
 				startPlay();
 			}
 			timeInGame++;
@@ -145,7 +145,7 @@ public class PlayState extends GameState{
 			
 		}
 		if(!commandsBall.isEmpty()) {
-			CommandBall c = commandsBall.get(commandsBall.size()-1);
+			CommandBall c = commandsBall.get(0);
 			if( timeInGame == c.getTimeInGame()) {
 				commandsBall.remove(c);
 				c.execute(b);
