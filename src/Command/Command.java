@@ -13,7 +13,7 @@ public abstract class Command {
 	public long getTimeInGame() {
 		return timeInGame;
 	}
-	public abstract void execute(Player p);
-	public abstract void Noexecute(Player p);
+	public abstract void execute(Player p,boolean status);
+//	public abstract void Noexecute(Player p);
 
 }
