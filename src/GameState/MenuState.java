@@ -57,7 +57,7 @@ public class MenuState extends GameState {
 		// draw title
 		g.setColor(titleColor);
 		g.setFont(titleFont);
-		g.drawString("Pokemon Volleyball", 40, 70);
+		g.drawString("Pokemon Volleyball", 30, 70);
 		
 		// draw menu options
 		g.setFont(font);
@@ -68,7 +68,7 @@ public class MenuState extends GameState {
 			else {
 				g.setColor(Color.RED);
 			}
-			g.drawString(options[i], 145, 140 + i * 15);
+			g.drawString(options[i], 135, 140 + i * 15);
 		}
 		
 	}
