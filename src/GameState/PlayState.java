@@ -147,7 +147,6 @@ public class PlayState extends GameState{
 			if( timeInGame == c.getTimeInGame()) {
 				commandsBall.remove(0);
 				c.execute(b);
-				System.out.println("ball2 : " + c.getX());
 			}
 		}
 

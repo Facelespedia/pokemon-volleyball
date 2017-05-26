@@ -19,9 +19,5 @@ public class CommandBall {
 	public void execute(Ball b) {
 		b.setPosition(this.x, this.y);
 	}
-	public int getX() {
-		return x;
-	}
-
 
 }
