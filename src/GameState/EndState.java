@@ -26,7 +26,7 @@ public class EndState extends GameState{
 	
 	Background bg;
 	private BufferedImage result ,playerwin , playerlose ,winner,loser;
-	protected GameStateManager gsm;
+	private  GameStateManager gsm;
 	boolean p1win=false , p2win=false;
 	private Color titleColor;
 	private Font titleFont;
@@ -88,6 +88,7 @@ public class EndState extends GameState{
 	}
 	public void keyReleased(int k){
 		if(k == KeyEvent.VK_BACK_SPACE) {
+			
 			gsm.setState(GameStateManager.MENUSTATE);
 		}
 	}

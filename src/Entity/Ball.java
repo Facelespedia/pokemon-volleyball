@@ -54,7 +54,7 @@ public class Ball  {
 
 
 			  
-			  if(x+30>=b.getWx()&&x+30<=b.getWx()+20&&y+32>=b.getWy()){
+			  if(x+30>=b.getWx()&&x+30<=b.getWx()+10&&y+32>=b.getWy()){
 				  dx = dx * (-1); 
 				  
 				     if(dx<=0){
@@ -62,7 +62,7 @@ public class Ball  {
 				     }else{
 				      dx=dx+0.5;
 				     }
-			  }else if(x+30>=b.getWx()&&x+30<=b.getWx()+20&&y+30>=b.getWy()){
+			  }else if(x+30>=b.getWx()&&x+30<=b.getWx()+10&&y+30>=b.getWy()){
 				  dy = dy * (-1);
 				  if(dy<=0){
 				      dy=dy-0.5;
@@ -217,42 +217,9 @@ public class Ball  {
 
 	}
 	
-	public void HitPik(Bound b){
-		
-		if(x<=b.getP1x()+50&&y+30>=b.getP1y()){
-			dx = dx * (-1);
-			 if(dx<=0){
-			      dx=dx-0.5;
-			     }else{
-			      dx=dx+0.5;
-			     }
-		
-		}else if(y+30>=b.getP1x()&&x<=b.getP1x()+50){
-			dy = dy * (-1);
-			if(dy<=0){
-			      dy=dy-0.5;
-			     }else{
-			      dy=dy+0.5;
-			     }
-		}
-		else if(x+30>=b.getP1x()&&y+30>=b.getP1y()){
-			dx = dx * (-1);
-			 if(dx<=0){
-			      dx=dx-0.5;
-			     }else{
-			      dx=dx+0.5;
-			     }
-		}else if(y+30>=b.getP1y()&&x+30>=b.getP1x()){
-			dy=dy*(-1);
-			if(dy<=0){
-			      dy=dy-0.5;
-			     }else{
-			      dy=dy+0.5;
-			     }
-		}
 		
 		
-	}
+	
 
 	public double getX() {
 		return x;
