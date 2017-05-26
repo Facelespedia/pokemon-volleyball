@@ -16,6 +16,7 @@ public class Ball  {
 	private BufferedImage b ;
 	private static final double SPEED_BALL = 1.5;
 	private double x,y,dx,dy;
+	private boolean restate = false;
 
 	public Ball() {
 
@@ -40,31 +41,76 @@ public class Ball  {
 	private void getNextPosition(Bound b) {
 
 		if (x < 0 || x > b.getWIDTH() - 30) {
-			dx = dx * (-1);
-		}
+			   dx = dx * (-1);
+			  }
 
-		if (y < 0 || y > b.getHEIGHT() - 30) {
-			dy = dy * (-1);
-		}
+			  if (y < 0 || y > b.getHEIGHT() - 30) {
+			   dy = dy * (-1);
+			  }
 
-		if ((y >= b.getWy() - 30 && y <= b.getWy()-28) && (x > b.getWx() - 30 && x < b.getWx() +30) ) {
-					dy = dy * (-1);
-		}else if ((x > b.getWx() - 30 && x < b.getWx() + 30) && (y > b.getWy())) {
-					dx = dx * (-1);
-		}
+			  if ((y >= b.getWy() - 30 && y <= b.getWy()-28) && (x > b.getWx() - 30 && x < b.getWx() +30) ) {
+			     dy = dy * (-1);
+			     if(dy<=0){
+			      dy=dy-0.1;
+			     }else{
+			      dy=dy+0.1;
+			     }
+			  }else if ((x > b.getWx() - 20 && x < b.getWx() + 20) && (y > b.getWy())) {
+			     dx = dx * (-1);
+			     if(dx<=0){
+			      dx=dx-0.1;
+			     }else{
+			      dx=dx+0.1;
+			     }
+			  }
 
-		if (y > b.getP1y() - 10 && (x > b.getP1x() - 20 && x < b.getP1x() + 20)) {
-			dy = dy * (-1);
-		}else if ((x > b.getP1x() - 10 && x < b.getP1x() + 10) && (y > b.getP1y()-10)) {
-			dx = dx * (-1);
-		}
-		
-		if (y > b.getP2y() - 10 && (x > b.getP2x() - 20 && x < b.getP2x() + 20)) {
-			dy = dy * (-1);
-		}else if ((x > b.getP2x() - 10 && x < b.getP2x() + 10) && (y > b.getP2y()-10)) {
-			dx = dx * (-1);
-		}
-
+			  if (y  > b.getP1y() - 20 && (x > b.getP1x()+10  && x < b.getP1x() + 40)) {
+			   
+			     dy = dy * (-1);
+			     if(dy<=0){
+			      dy=dy-0.1;
+			     }else{
+			      dy=dy+0.1;
+			     }
+			  }else if ((x > b.getP1x()+10  && x < b.getP1x() + 40) && (y > b.getP1y()-30)) {
+			     dx = dx * (-1);
+			     if(dx<=0){
+			      dx=dx-0.1;
+			     }else{
+			      dx=dx+0.1;
+			     } 
+			  }
+			  else if ((x+30 > b.getP1x()  && x+30 < b.getP1x() + 50) && (y > b.getP1y()-30)) {
+			     dx = dx * (-1);
+			     if(dx<=0){
+			      dx=dx-0.1;
+			     }else{
+			      dx=dx+0.1;
+			     }
+			  }
+			  
+			  if (y > b.getP2y() - 30 && (x > b.getP2x() && x < b.getP2x() + 50)) {
+			     dy = dy * (-1);
+			     if(dy<=0){
+			      dy=dy-0.1;
+			     }else{
+			      dy=dy+0.1;
+			     }
+			  }else if ((x > b.getP2x()  && x < b.getP2x() + 50) && (y > b.getP2y()-30)) {
+			     dx = dx * (-1);
+			     if(dx<=0){
+			      dx=dx-0.1;
+			     }else{
+			      dx=dx+0.1;
+			     }
+			  }else if ((x+30 > b.getP2x()  && x+30 < b.getP2x() + 50) && (y > b.getP2y()-30)) {
+			     dx = dx * (-1);
+			     if(dx<=0){
+			      dx=dx-0.1;
+			     }else{
+			      dx=dx+0.1;
+			     }
+			  }
 		x += dx;
 		y += dy;		
 
@@ -93,10 +139,23 @@ public class Ball  {
 				p2.setPosition(260, 190);
 				ball.setPosition(270, 50);
 			}
-			getNextPosition(b) ;
-			setPosition(x,y);
+			restate = true;
 		}
 
+	}
+	
+	public double randomXPos() {
+		return 5 + (Math.random() * (280 - 5));
+	}
+
+	public void setState(boolean r) {
+		this.restate = r;
+		dx = SPEED_BALL;
+		dy = SPEED_BALL;
+	}
+	
+	public boolean resetState() {
+		return restate;
 	}
 
 	public void draw(Graphics2D g) {
