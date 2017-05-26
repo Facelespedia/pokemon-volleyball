@@ -15,4 +15,10 @@ public class CommandJump extends Command{
 		p.setUp(true);
 	}
 
+	@Override
+	public void Noexecute(Player p) {
+		// TODO Auto-generated method stub
+		p.setUp(false);
+	}
+
 }

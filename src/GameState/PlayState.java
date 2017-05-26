@@ -33,7 +33,7 @@ public class PlayState extends GameState{
 	private long startTime;
 	private long timeInGame;
 	private List<Command> commands = new ArrayList<Command>();
-	//	public static final long DELAY = 10;
+	public static final long DELAY = 10;
 	public static final int sPosX1 = 20,sPosY1 = 190,sPosX2 = 260,sPosY2 = 190,sPosXb = 0,sPosYb=20,sPosXw=150,sPosYw=160;
 
 
@@ -58,45 +58,66 @@ public class PlayState extends GameState{
 		w.setPosition(sPosXw, sPosYw);
 		bound = new Bound(gp.WIDTH,gp.HEIGHT,p1.getX(),p1.getY(),p2.getX(),p2.getY(),w.getX(),w.getY());
 	}
-
+	
+	boolean end =true;
+	boolean replay = true;
 	@Override
 	public void update() {
-		timeInGame = System.currentTimeMillis() - startTime;
 		
-		if(b.resetState()) {
-			resetState();
+		
+		if(p1.getScore() < 5 && p2.getScore() < 5 && end) {
+			timeInGame = System.currentTimeMillis() - startTime;
+			if(b.resetState()) {
+				resetState();
+				b.setState(false);
+			}else {
+				startPlay();
+			}
+		}else {
+			if(replay) {
+				init();
+				end = false;
+				replay = false;
+				startTime = System.currentTimeMillis();
+			}else {
+				//startReplay();
+			}
+			
 		}
-		p1.update(bound);
-		p2.update(bound);
-		bound.update(p1.getX(), p1.getY(), p2.getX(), p2.getY());
-		b.update(bound,p1,p2,b);
-		System.out.println(timeInGame);
 	}
-	
+
 	public void resetState() {
 		b.setPosition(b.randomXPos(), sPosYb);
 		p1.setPosition(sPosX1, sPosY1);
 		p2.setPosition(sPosX2, sPosY2);
 	}
-	
+
+	public void startPlay() {
+		p1.update(bound);
+		p2.update(bound);
+		bound.update(p1.getX(), p1.getY(), p2.getX(), p2.getY());
+		b.update(bound,p1,p2,b);
+	}
+
 	public void startReplay() {
-		// TODO: Implement this method 
-//		world.reset();
-//		over = false;
-//		startTime = System.currentTimeMillis();
-//		while(!over) {
-//			timeInGame = System.currentTimeMillis() - startTime;
+		
+			timeInGame = System.currentTimeMillis() - startTime;
 			if(!commands.isEmpty()) {
 				Command c = commands.get(0);
 				if( timeInGame >= c.getTimeInGame()) {
 					commands.remove(c);
 					c.execute(p1);
+					c.Noexecute(p1);
+					System.out.println(c);
+					//					c.execute(p2);
 				}
 			}
-//			world.update();
-//			over = world.playerHitWalls();
-//			delay();
-//		}
+			p1.update(bound);
+			p2.update(bound);
+			bound.update(p1.getX(), p1.getY(), p2.getX(), p2.getY());
+			b.update(bound,p1,p2,b);
+			delay();
+		
 	}
 
 	@Override
@@ -129,36 +150,48 @@ public class PlayState extends GameState{
 		if(k == KeyEvent.VK_LEFT) {
 			cm = new CommandLeft(timeInGame);
 			cm.execute(p2);
-			commands.add(cm);
+			//commands.add(cm);
 		}
 		if(k == KeyEvent.VK_RIGHT) {
 			cm = new CommandRight(timeInGame);
 			cm.execute(p2);
-			commands.add(cm);
+			//commands.add(cm);
 		}
 		if(k == KeyEvent.VK_UP) {
 			cm = new CommandJump(timeInGame);
 			cm.execute(p2);
-			commands.add(cm);
+			//commands.add(cm);
 		}
 	}
 
 	@Override
 	public void keyReleased(int k) {
-		if(k == KeyEvent.VK_A) p1.setLeft(false);
-		if(k == KeyEvent.VK_D) p1.setRight(false);
-		if(k == KeyEvent.VK_W) p1.setUp(false);
+		if(k == KeyEvent.VK_A) {
+			cm = new CommandLeft(timeInGame);
+			cm.Noexecute(p1);
+			commands.add(cm);
+		}
+		if(k == KeyEvent.VK_D) {
+			cm = new CommandRight(timeInGame);
+			cm.Noexecute(p1);
+			commands.add(cm);
+		}
+		if(k == KeyEvent.VK_W) {
+			cm = new CommandJump(timeInGame);
+			cm.Noexecute(p1);
+			commands.add(cm);
+		}
 		if(k == KeyEvent.VK_LEFT) p2.setLeft(false);
 		if(k == KeyEvent.VK_RIGHT) p2.setRight(false);
 		if(k == KeyEvent.VK_UP) p2.setUp(false);
 	}
 
-	//	private void delay() {
-	//		try {
-	//			Thread.sleep(DELAY);
-	//		} catch (InterruptedException e) {
-	//			e.printStackTrace();
-	//		}
-	//	}
+	private void delay() {
+		try {
+			Thread.sleep(DELAY);
+		} catch (InterruptedException e) {
+			e.printStackTrace();
+		}
+	}
 
 }

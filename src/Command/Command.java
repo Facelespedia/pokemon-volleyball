@@ -14,5 +14,6 @@ public abstract class Command {
 		return timeInGame;
 	}
 	public abstract void execute(Player p);
+	public abstract void Noexecute(Player p);
 
 }

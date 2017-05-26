@@ -16,4 +16,10 @@ public class CommandLeft extends Command{
 		
 	}
 
+	@Override
+	public void Noexecute(Player p) {
+		// TODO Auto-generated method stub
+		p.setLeft(false);
+	}
+
 }

@@ -15,4 +15,10 @@ public class CommandRight extends Command{
 		p.setRight(true);
 	}
 
+	@Override
+	public void Noexecute(Player p) {
+		// TODO Auto-generated method stub
+		p.setRight(false);
+	}
+
 }
