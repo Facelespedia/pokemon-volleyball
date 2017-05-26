@@ -43,18 +43,10 @@ public class Player {
 		}
 	}
 
-	//	public void setJumping(boolean b) {
-	//		jumping = b;
-	//	}
-	//	public void setSmashing(boolean b) {
-	//		smashing = b;
-	//	}
+	
 	public void setUp(boolean b) {
 		up = b;
 	}
-	//	public void setDown(boolean b) {
-	//		down = b;
-	//	}
 	public void setLeft(boolean b) {
 		left = b;
 	}
@@ -70,8 +62,6 @@ public class Player {
 	}
 
 	private void getNextPosition(Bound b) {
-		//		 movement
-		//		willOutOfBound(dx,b);
 		if(num == 1){
 			if(left && x + dx > 0 ) {
 				dx = SPEED*(-1);
@@ -110,9 +100,6 @@ public class Player {
 		if(y > 190){
 			y=190;
 		}
-
-
-
 
 	}
 
