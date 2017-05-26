@@ -63,7 +63,7 @@ public class Player {
 
 	public void getNextPosition(Bound b) {
 		if(num == 1){
-			if(left && x + dx > 0 ) {
+			if(left && x + dx > 5 ) {
 				dx = SPEED*(-1);
 			}
 			else if(right && x + dx < b.getWx() - 50 ) {
@@ -77,7 +77,7 @@ public class Player {
 			if(left && x - dx > b.getWx() + 30 ) {
 				dx = SPEED*(-1);
 			}
-			else if(right && x + dx < b.getWIDTH() - 50) {
+			else if(right && x + dx < b.getWIDTH() - 30) {
 				dx = SPEED;
 			}
 			if(up && dy ==0) {
