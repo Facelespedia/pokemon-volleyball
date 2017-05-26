@@ -14,6 +14,7 @@ import javax.swing.JPanel;
 import GameState.GameStateManager;
 
 public class GamePanel extends JPanel implements Runnable , KeyListener{
+	
 	public static final int WIDTH = 320;
 	public static final int HEIGHT = 240;
 	public static final int SCALE = 2;
@@ -22,12 +23,9 @@ public class GamePanel extends JPanel implements Runnable , KeyListener{
 	private boolean running;
 	private int FPS  = 60 ;
 	private long targetTime = 1000 / FPS ;
-
 	private BufferedImage image;
 	private Graphics2D g;
-	
 	private GameStateManager gsm;
-
 
 	public GamePanel() {
 		super();
@@ -37,17 +35,13 @@ public class GamePanel extends JPanel implements Runnable , KeyListener{
 	}
 
 	private void init() {
-
 		image = new BufferedImage(
 				WIDTH, HEIGHT,
 				BufferedImage.TYPE_INT_RGB
 				);
 		g = (Graphics2D) image.getGraphics();
-
 		running = true;
-
 		gsm = new GameStateManager();	
-
 	}
 
 	public void addNotify() {
@@ -57,41 +51,32 @@ public class GamePanel extends JPanel implements Runnable , KeyListener{
 			addKeyListener(this);
 			thread.start();
 		}
-
 	}
-
 
 	@Override
 	public void run() {
 		init();
-
 		long start;
 		long elapsed;
 		long wait;
 
 		// game loop
 		while(running) {
-
 			start = System.nanoTime();
-
 			update();
 			draw();
 			drawToScreen();
-
 			elapsed = System.nanoTime() - start;
-
 			wait = targetTime - elapsed / 1000000;
 			if(wait < 0) wait = 5;
-
+			
 			try {
 				Thread.sleep(wait);
 			}
 			catch(Exception e) {
 				e.printStackTrace();
 			}
-
 		}
-
 	}
 
 	private void update() {
