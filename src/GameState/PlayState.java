@@ -70,7 +70,7 @@ public class PlayState extends GameState{
 	@Override
 	public void update() {
 
-		if(p1.getScore() < 3 && p2.getScore() < 3 && end) {	
+		if(p1.getScore() < 5 && p2.getScore() < 5 && end) {	
 			if(b.resetState()) {
 				resetState();
 				b.setState(false);
@@ -88,11 +88,11 @@ public class PlayState extends GameState{
 				startReplay();
 				scoreP1 = p1.getScore();
 				scoreP2 = p2.getScore();
-				if(scoreP1==3){
+				if(scoreP1==5){
 					EndState es = (EndState) gsm.getState(GameStateManager.ENDSTATE);
 					es.setP1Win(true);
 					gsm.setState(GameStateManager.ENDSTATE);
-				}else if (scoreP2==3){
+				}else if (scoreP2==5){
 					EndState es = (EndState) gsm.getState(GameStateManager.ENDSTATE);
 					es.setP2Win(true);
 					gsm.setState(GameStateManager.ENDSTATE);
