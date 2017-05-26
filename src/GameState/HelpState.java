@@ -13,16 +13,10 @@ public class HelpState  extends GameState{
 	private Font font;
 	
 	public HelpState(GameStateManager gsm){
-		
 		this.gsm = gsm;
 		init();
 	}
-
-
-
-
-
-
+	
 	public void init() {
 		bg = new Background("/Backgrounds/board.jpg", 0.1);
 		

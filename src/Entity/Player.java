@@ -140,6 +140,9 @@ public class Player {
 		score++;
 		sb.setScore(score);
 	}
+	public int getScore() {
+		return score;
+	}
 
 
 }

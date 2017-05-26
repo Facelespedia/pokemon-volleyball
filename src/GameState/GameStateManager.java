@@ -10,6 +10,7 @@ public class GameStateManager {
 	public static final int MENUSTATE = 0;
 	public static final int PLAYSTATE = 1;
 	public static final int HELPSTATE = 2;
+	public static final int ENDSTATE = 3;
 	public GameStateManager() {
 		
 		gameStates = new ArrayList<GameState>();
@@ -18,7 +19,13 @@ public class GameStateManager {
 		gameStates.add(new MenuState(this));
 		gameStates.add(new PlayState(this));
 		gameStates.add(new HelpState(this));
+		gameStates.add(new EndState(this));
 		
+	}
+	
+	public GameState getState(int state){
+		currentState = state;
+		return gameStates.get(currentState);
 	}
 	
 	public void setState(int state) {

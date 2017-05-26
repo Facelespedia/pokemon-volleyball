@@ -84,10 +84,12 @@ public class Ball  {
 			if(x < b.getWIDTH()/2) {
 				p1.scoreUpdate();
 				p1.setPosition(20, 190);
+				p2.setPosition(260, 190);
 				ball.setPosition(0, 50);
 			}
 			else {
 				p2.scoreUpdate();
+				p1.setPosition(20, 190);
 				p2.setPosition(260, 190);
 				ball.setPosition(270, 50);
 			}

@@ -23,6 +23,7 @@ public class PlayState extends GameState{
 	Ball b;
 	Wall w;
 	Bound bound;
+	int scoreP1,scoreP2;
 
 	public PlayState (GameStateManager gsm) {
 		this.gsm = gsm;
@@ -51,6 +52,18 @@ public class PlayState extends GameState{
 		p2.update(bound);
 		bound.update(p1.getX(), p1.getY(), p2.getX(), p2.getY());
 		b.update(bound,p1,p2,b);
+		scoreP1 = p1.getScore();
+		scoreP2 = p2.getScore();
+		
+		if(scoreP1==5){
+			EndState es = (EndState) gsm.getState(GameStateManager.ENDSTATE);
+			es.setP1Win(true);
+			gsm.setState(GameStateManager.ENDSTATE);
+		}else if (scoreP2==5){
+			EndState es = (EndState) gsm.getState(GameStateManager.ENDSTATE);
+			es.setP2Win(true);
+			gsm.setState(GameStateManager.ENDSTATE);
+		}
 		
 	}
 
