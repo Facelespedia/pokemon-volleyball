@@ -7,8 +7,10 @@ public class CommandBall {
 	private long timeInGame;
 	private int x,y;
 
-	public CommandBall(long timeInGame) {
+	public CommandBall(long timeInGame,int x,int y) {
 		this.timeInGame = timeInGame;
+		this.x = x;
+		this.y = y;
 	}
 
 	public long getTimeInGame() {
@@ -16,11 +18,6 @@ public class CommandBall {
 	}
 	public void execute(Ball b) {
 		b.setPosition(x, y);
-	}
-	
-	public void set(int x ,int y) {
-		this.x = x;
-		this.y = y;
 	}
 	
 
