@@ -1,11 +1,11 @@
-/GameState/
-/EndState/
-<<<<<<< HEAD
-/Entity/
-=======
 /Backgrounds/
 /Ball/
+/Command/
+/EndState/
 /Entity/
+/GameState/
+/Main/
+/Map/
 /Player/
+/Text/
 /Wall/
->>>>>>> master
