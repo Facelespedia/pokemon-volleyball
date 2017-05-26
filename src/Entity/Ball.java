@@ -4,10 +4,12 @@ import java.awt.Graphics2D;
 import java.awt.image.BufferedImage;
 import java.io.IOException;
 import java.util.ArrayList;
+import java.util.List;
 
 import javax.imageio.ImageIO;
 import javax.swing.ImageIcon;
 
+import Command.CommandBall;
 import GameState.GameState;
 import Main.GamePanel;
 
@@ -17,7 +19,7 @@ public class Ball  {
 	private static final double SPEED_BALL = 1.5;
 	private double x,y,dx,dy;
 	private boolean restate = false;
-
+	
 	public Ball() {
 
 		try {
@@ -41,6 +43,7 @@ public class Ball  {
 	private void getNextPosition(Bound b) {
 
 		if (x < 0 || x > b.getWIDTH() - 30) {
+
 			   dx = dx * (-1);
 			  }
 
@@ -193,7 +196,7 @@ public class Ball  {
 		}
 
 	}
-	
+
 	public double randomXPos() {
 		return 5 + (Math.random() * (280 - 5));
 	}
@@ -203,7 +206,7 @@ public class Ball  {
 		dx = SPEED_BALL;
 		dy = SPEED_BALL;
 	}
-	
+
 	public boolean resetState() {
 		return restate;
 	}
@@ -249,6 +252,14 @@ public class Ball  {
 		}
 		
 		
+	}
+
+	public double getX() {
+		return x;
+	}
+
+	public double getY() {
+		return y;
 	}
 
 }

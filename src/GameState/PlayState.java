@@ -9,6 +9,7 @@ import java.util.ArrayList;
 import java.util.List;
 
 import Command.Command;
+import Command.CommandBall;
 import Command.CommandJump;
 import Command.CommandLeft;
 import Command.CommandRight;
@@ -31,12 +32,16 @@ public class PlayState extends GameState{
 	Bound bound;
 	int scoreP1,scoreP2;
 	Command cm;
+	CommandBall cb;
 	private long startTime;
 	private long timeInGame;
-	private List<Command> commands = new ArrayList<Command>();
-	public static final long DELAY = 10;
-	public static final int sPosX1 = 20,sPosY1 = 210,sPosX2 = 260,sPosY2 = 210,sPosXb = 0,sPosYb=20,sPosXw=150,sPosYw=160;
+	private List<Command> commandsP1 = new ArrayList<Command>();
+	private List<Command> commandsP2 = new ArrayList<Command>();
+	private List<CommandBall> commandsBall = new ArrayList<CommandBall>();
 
+	public static final long DELAY = 10;
+	public static final int sPosX1 = 20,sPosY1 = 210,sPosX2 = 260,sPosY2 = 210,sPosYb=20,sPosXw=150,sPosYw=160;
+	int sPosXb=0;
 	public PlayState (GameStateManager gsm) {
 		this.gsm = gsm;
 		startTime = System.currentTimeMillis();
@@ -58,14 +63,19 @@ public class PlayState extends GameState{
 		w.setPosition(sPosXw, sPosYw);
 		bound = new Bound(gp.WIDTH,gp.HEIGHT,p1.getX(),p1.getY(),p2.getX(),p2.getY(),w.getX(),w.getY());
 	}
-	
+
 	boolean end =true;
 	boolean replay = true;
 	@Override
 	public void update() {
+
 		if(p1.getScore() < 5 && p2.getScore() < 5 && end) {
 			timeInGame = System.currentTimeMillis() - startTime;
 			if(b.resetState()) {
+				sPosXb = (int)b.randomXPos();
+				cb = new CommandBall(timeInGame);
+				cb.set(sPosXb, sPosYb);
+				commandsBall.add(cb);
 				resetState();
 				b.setState(false);
 			}else {
@@ -78,14 +88,25 @@ public class PlayState extends GameState{
 				replay = false;
 				startTime = System.currentTimeMillis();
 			}else {
-				//startReplay();
+				startReplay();
+				scoreP1 = p1.getScore();
+				scoreP2 = p2.getScore();
+				if(scoreP1==2){
+					EndState es = (EndState) gsm.getState(GameStateManager.ENDSTATE);
+					es.setP1Win(true);
+					gsm.setState(GameStateManager.ENDSTATE);
+				}else if (scoreP2==2){
+					EndState es = (EndState) gsm.getState(GameStateManager.ENDSTATE);
+					es.setP2Win(true);
+					gsm.setState(GameStateManager.ENDSTATE);
+				}
 			}
-			
+
 		}
 	}
 
 	public void resetState() {
-		b.setPosition(b.randomXPos(), sPosYb);
+		b.setPosition(sPosXb, sPosYb);
 		p1.setPosition(sPosX1, sPosY1);
 		p2.setPosition(sPosX2, sPosY2);
 	}
@@ -95,37 +116,46 @@ public class PlayState extends GameState{
 		p2.update(bound);
 		bound.update(p1.getX(), p1.getY(), p2.getX(), p2.getY());
 		b.update(bound,p1,p2,b);
-		scoreP1 = p1.getScore();
-		scoreP2 = p2.getScore();
-		
-		if(scoreP1==5){
-			EndState es = (EndState) gsm.getState(GameStateManager.ENDSTATE);
-			es.setP1Win(true);
-			gsm.setState(GameStateManager.ENDSTATE);
-		}else if (scoreP2==5){
-			EndState es = (EndState) gsm.getState(GameStateManager.ENDSTATE);
-			es.setP2Win(true);
-			gsm.setState(GameStateManager.ENDSTATE);
-		}
 	}
-
+	int count =0;
 	public void startReplay() {
 		timeInGame = System.currentTimeMillis() - startTime;
-		if(!commands.isEmpty()) {
-			Command c = commands.get(0);
+		if(!commandsP1.isEmpty()) {
+			Command c = commandsP1.get(0);
 			if( timeInGame >= c.getTimeInGame()) {
-				commands.remove(c);
-				c.execute(p1);
-				c.Noexecute(p1);
-				System.out.println(c);
-				//					c.execute(p2);
+				commandsP1.remove(c);
+				if(count%2==0){
+					c.execute(p1,true);
+				}else{
+					c.execute(p1,false);
+				}
+
+			}
+			p1.update(bound);
+		}
+		if(!commandsP2.isEmpty()) {
+			Command c = commandsP2.get(0);
+			if( timeInGame >= c.getTimeInGame()) {
+				commandsP2.remove(c);
+				if(count%2==0){
+					c.execute(p2,true);
+				}else{
+					c.execute(p2,false);
+				}
+			}
+			p2.update(bound);
+		}
+		if(!commandsBall.isEmpty()) {
+			CommandBall c = commandsBall.get(0);
+			if( timeInGame >= c.getTimeInGame()) {
+				commandsBall.remove(c);
+				c.execute(b);
 			}
 		}
-		p1.update(bound);
-		p2.update(bound);
+		count++;
+
 		bound.update(p1.getX(), p1.getY(), p2.getX(), p2.getY());
 		b.update(bound,p1,p2,b);
-		delay();
 	}
 
 	@Override
@@ -140,35 +170,37 @@ public class PlayState extends GameState{
 
 	@Override
 	public void keyPressed(int k) {
-		if(k == KeyEvent.VK_A) {
-			cm = new CommandLeft(timeInGame);
-			cm.execute(p1);
-			commands.add(cm);
-		}
-		if(k == KeyEvent.VK_D) {
-			cm = new CommandRight(timeInGame);
-			cm.execute(p1);
-			commands.add(cm);
-		}
-		if(k == KeyEvent.VK_W) {
-			cm = new CommandJump(timeInGame);
-			cm.execute(p1);
-			commands.add(cm);
-		}
-		if(k == KeyEvent.VK_LEFT) {
-			cm = new CommandLeft(timeInGame);
-			cm.execute(p2);
-			//commands.add(cm);
-		}
-		if(k == KeyEvent.VK_RIGHT) {
-			cm = new CommandRight(timeInGame);
-			cm.execute(p2);
-			//commands.add(cm);
-		}
-		if(k == KeyEvent.VK_UP) {
-			cm = new CommandJump(timeInGame);
-			cm.execute(p2);
-			//commands.add(cm);
+		if(replay){
+			if(k == KeyEvent.VK_A) {
+				cm = new CommandLeft(timeInGame);
+				cm.execute(p1,true);
+				commandsP1.add(cm);
+			}
+			if(k == KeyEvent.VK_D) {
+				cm = new CommandRight(timeInGame);
+				cm.execute(p1,true);
+				commandsP1.add(cm);
+			}
+			if(k == KeyEvent.VK_W) {
+				cm = new CommandJump(timeInGame);
+				cm.execute(p1,true);
+				commandsP1.add(cm);
+			}
+			if(k == KeyEvent.VK_LEFT) {
+				cm = new CommandLeft(timeInGame);
+				cm.execute(p2,true);
+				commandsP2.add(cm);
+			}
+			if(k == KeyEvent.VK_RIGHT) {
+				cm = new CommandRight(timeInGame);
+				cm.execute(p2,true);
+				commandsP2.add(cm);
+			}
+			if(k == KeyEvent.VK_UP) {
+				cm = new CommandJump(timeInGame);
+				cm.execute(p2,true);
+				commandsP2.add(cm);
+			}
 		}
 	}
 
@@ -176,22 +208,34 @@ public class PlayState extends GameState{
 	public void keyReleased(int k) {
 		if(k == KeyEvent.VK_A) {
 			cm = new CommandLeft(timeInGame);
-			cm.Noexecute(p1);
-			commands.add(cm);
+			cm.execute(p1,false);
+			commandsP1.add(cm);
 		}
 		if(k == KeyEvent.VK_D) {
 			cm = new CommandRight(timeInGame);
-			cm.Noexecute(p1);
-			commands.add(cm);
+			cm.execute(p1,false);
+			commandsP1.add(cm);
 		}
 		if(k == KeyEvent.VK_W) {
 			cm = new CommandJump(timeInGame);
-			cm.Noexecute(p1);
-			commands.add(cm);
+			cm.execute(p1,false);
+			commandsP1.add(cm);
 		}
-		if(k == KeyEvent.VK_LEFT) p2.setLeft(false);
-		if(k == KeyEvent.VK_RIGHT) p2.setRight(false);
-		if(k == KeyEvent.VK_UP) p2.setUp(false);
+		if(k == KeyEvent.VK_LEFT) {
+			cm = new CommandLeft(timeInGame);
+			cm.execute(p2,false);
+			commandsP2.add(cm);
+		}
+		if(k == KeyEvent.VK_RIGHT) {
+			cm = new CommandRight(timeInGame);
+			cm.execute(p2,false);
+			commandsP2.add(cm);
+		}
+		if(k == KeyEvent.VK_UP) {
+			cm = new CommandJump(timeInGame);
+			cm.execute(p2,false);
+			commandsP2.add(cm);
+		}
 	}
 
 	private void delay() {

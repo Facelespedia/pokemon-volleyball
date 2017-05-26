@@ -10,15 +10,15 @@ public class CommandJump extends Command{
 	}
 
 	@Override
-	public void execute(Player p) {
+	public void execute(Player p,boolean status) {
 		// TODO Auto-generated method stub
-		p.setUp(true);
+		p.setUp(status);
 	}
 
-	@Override
-	public void Noexecute(Player p) {
-		// TODO Auto-generated method stub
-		p.setUp(false);
-	}
+//	@Override
+//	public void Noexecute(Player p) {
+//		// TODO Auto-generated method stub
+//		p.setUp(false);
+//	}
 
 }

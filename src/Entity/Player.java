@@ -61,7 +61,7 @@ public class Player {
 		return this.y;
 	}
 
-	private void getNextPosition(Bound b) {
+	public void getNextPosition(Bound b) {
 		if(num == 1){
 			if(left && x + dx > 0 ) {
 				dx = SPEED*(-1);

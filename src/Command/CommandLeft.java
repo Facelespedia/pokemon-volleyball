@@ -10,16 +10,16 @@ public class CommandLeft extends Command{
 	}
 
 	@Override
-	public void execute(Player p) {
+	public void execute(Player p,boolean status) {
 		// TODO Auto-generated method stub
-		p.setLeft(true);
+		p.setLeft(status);
 		
 	}
 
-	@Override
-	public void Noexecute(Player p) {
-		// TODO Auto-generated method stub
-		p.setLeft(false);
-	}
+//	@Override
+//	public void Noexecute(Player p) {
+//		// TODO Auto-generated method stub
+//		p.setLeft(false);
+//	}
 
 }
