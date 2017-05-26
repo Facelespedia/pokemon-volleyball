@@ -43,76 +43,127 @@ public class Ball  {
 	private void getNextPosition(Bound b) {
 
 		if (x < 0 || x > b.getWIDTH() - 30) {
-			dx = dx * (-1);
-		}
 
-		if (y < 0 || y > b.getHEIGHT() - 30) {
-			dy = dy * (-1);
-		}
+			   dx = dx * (-1);
+			  }
 
-		if ((y >= b.getWy() - 30 && y <= b.getWy()-28) && (x > b.getWx() - 30 && x < b.getWx() +30) ) {
-			dy = dy * (-1);
-			if(dy<=0){
-				dy=dy-0.1;
-			}else{
-				dy=dy+0.1;
-			}
-		}else if ((x > b.getWx() - 20 && x < b.getWx() + 20) && (y > b.getWy())) {
-			dx = dx * (-1);
-			if(dx<=0){
-				dx=dx-0.1;
-			}else{
-				dx=dx+0.1;
-			}
-		}
+			  if (y < 0 || y > b.getHEIGHT() - 30) {
+			   dy = dy * (-1);
+			   
+			  }
 
-		if (y  > b.getP1y() - 20 && (x > b.getP1x()+10  && x < b.getP1x() + 40)) {
 
-			dy = dy * (-1);
-			if(dy<=0){
-				dy=dy-0.1;
-			}else{
-				dy=dy+0.1;
-			}
-		}else if ((x > b.getP1x()+10  && x < b.getP1x() + 40) && (y > b.getP1y()-30)) {
-			dx = dx * (-1);
-			if(dx<=0){
-				dx=dx-0.1;
-			}else{
-				dx=dx+0.1;
-			} 
-		}
-		else if ((x+30 > b.getP1x()  && x+30 < b.getP1x() + 50) && (y > b.getP1y()-30)) {
-			dx = dx * (-1);
-			if(dx<=0){
-				dx=dx-0.1;
-			}else{
-				dx=dx+0.1;
-			}
-		}
+			  
+			  if(x+30>=b.getWx()&&x+30<=b.getWx()+20&&y+32>=b.getWy()){
+				  dx = dx * (-1); 
+				  
+				     if(dx<=0){
+				      dx=dx-0.5;
+				     }else{
+				      dx=dx+0.5;
+				     }
+			  }else if(x+30>=b.getWx()&&x+30<=b.getWx()+20&&y+30>=b.getWy()){
+				  dy = dy * (-1);
+				  if(dy<=0){
+				      dy=dy-0.5;
+				     }else{
+				      dy=dy+0.5;
+				     }
+			  }
+			  
+			  if(dx>=0&&dy>=0&&(x+30>=b.getP1x()&&y+30>=b.getP1y()&&x+30<=b.getP1x()+25)){
+				  dx = dx * (-1);
+				  dy = dy * (-1);
+				  if(dy<=0){
+				      dy=dy-0.5;
+				     }else{
+				      dy=dy+0.5;
+				     }
+				  
+				 
+				     if(dx<=0){
+				      dx=dx-0.5;
+				     }else{
+				      dx=dx+0.5;
+				     }
+			  }
+			  else if(dx<0&&dy>=0&&(x+30>=b.getP1x()&&y+30>=b.getP1y()&&x+30<=b.getP1x()+25)){
+				  dy = dy * (-1);
+				  if(dy<=0){
+				      dy=dy-0.5;
+				     }else{
+				      dy=dy+0.5;
+				     }
+			  }else if(dx>=0&&dy>=0&&((x+30>=b.getP1x()+25)&&(y+30>=b.getP1y())&&(x+30<=b.getP1x()+50))){
+				  dy = dy * (-1);
+				  if(dy<=0){
+				      dy=dy-0.5;
+				     }else{
+				      dy=dy+0.5;
+				     }
+			  }else if(dx<0&&dy>=0&&((x+30>=b.getP1x()+25)&&(y+30>=b.getP1y())&&(x+30<=b.getP1x()+50))){
+				  dx = dx * (-1);
+				  dy = dy * (-1);
+				  if(dy<=0){
+				      dy=dy-0.5;
+				     }else{
+				      dy=dy+0.5;
+				     }
+				  
+				  if(dx<=0){
+				      dx=dx-0.5;
+				     }else{
+				      dx=dx+0.5;
+				     }
+			  }
+			  
+			  
+			  if(dx>=0&&dy>=0&&(x+30>=b.getP2x()&&y+30>=b.getP2y()&&x+30<=b.getP2x()+25)){
+				  dx = dx * (-1);
+				  dy = dy * (-1);
+				  if(dy<=0){
+				      dy=dy-0.5;
+				     }else{
+				      dy=dy+0.5;
+				     }
+				  
+				  if(dx<=0){
+				      dx=dx-0.5;
+				     }else{
+				      dx=dx+0.5;
+				     }
+			  }
+			  else if(dx<0&&dy>=0&&(x+30>=b.getP2x()&&y+30>=b.getP2y()&&x+30<=b.getP2x()+25)){
+				  dy = dy * (-1);
+				  if(dy<=0){
+				      dy=dy-0.5;
+				     }else{
+				      dy=dy+0.5;
+				     }
+			  }else if(dx>=0&&dy>=0&&((x+30>=b.getP2x()+25)&&(y+30>=b.getP2y())&&(x+30<=b.getP2x()+50))){
+				  dy = dy * (-1);
+				  if(dy<=0){
+				      dy=dy-0.5;
+				     }else{
+				      dy=dy+0.5;
+				     }
+			  }else if(dx<0&&dy>=0&&((x+30>=b.getP2x()+25)&&(y+30>=b.getP2y())&&(x+30<=b.getP2x()+50))){
+				  dx = dx * (-1);
+				  dy = dy * (-1);
+				  if(dy<=0){
+				      dy=dy-0.5;
+				     }else{
+				      dy=dy+0.5;
+				     }
+				  
+				  if(dx<=0){
+				      dx=dx-0.5;
+				     }else{
+				      dx=dx+0.5;
+				     }
+			  }
+			  
 
-		if (y > b.getP2y() - 30 && (x > b.getP2x() && x < b.getP2x() + 50)) {
-			dy = dy * (-1);
-			if(dy<=0){
-				dy=dy-0.1;
-			}else{
-				dy=dy+0.1;
-			}
-		}else if ((x > b.getP2x()  && x < b.getP2x() + 50) && (y > b.getP2y()-30)) {
-			dx = dx * (-1);
-			if(dx<=0){
-				dx=dx-0.1;
-			}else{
-				dx=dx+0.1;
-			}
-		}else if ((x+30 > b.getP2x()  && x+30 < b.getP2x() + 50) && (y > b.getP2y()-30)) {
-			dx = dx * (-1);
-			if(dx<=0){
-				dx=dx-0.1;
-			}else{
-				dx=dx+0.1;
-			}
-		}
 		x += dx;
 		y += dy;		
 
@@ -164,6 +215,43 @@ public class Ball  {
 
 		g.drawImage(b,(int)x,(int)y,null);
 
+	}
+	
+	public void HitPik(Bound b){
+		
+		if(x<=b.getP1x()+50&&y+30>=b.getP1y()){
+			dx = dx * (-1);
+			 if(dx<=0){
+			      dx=dx-0.5;
+			     }else{
+			      dx=dx+0.5;
+			     }
+		
+		}else if(y+30>=b.getP1x()&&x<=b.getP1x()+50){
+			dy = dy * (-1);
+			if(dy<=0){
+			      dy=dy-0.5;
+			     }else{
+			      dy=dy+0.5;
+			     }
+		}
+		else if(x+30>=b.getP1x()&&y+30>=b.getP1y()){
+			dx = dx * (-1);
+			 if(dx<=0){
+			      dx=dx-0.5;
+			     }else{
+			      dx=dx+0.5;
+			     }
+		}else if(y+30>=b.getP1y()&&x+30>=b.getP1x()){
+			dy=dy*(-1);
+			if(dy<=0){
+			      dy=dy-0.5;
+			     }else{
+			      dy=dy+0.5;
+			     }
+		}
+		
+		
 	}
 
 	public double getX() {
