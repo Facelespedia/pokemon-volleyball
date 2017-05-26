@@ -21,152 +21,134 @@ public class Ball  {
 	private boolean restate = false;
 	
 	public Ball() {
-
 		try {
-
 			b = ImageIO.read(
 					getClass().getResourceAsStream(
 							"/Ball/ball.png"
 							)
 					);
-
 		}
 		catch(Exception e) {
 			e.printStackTrace();
 		}
-
 		dx = SPEED_BALL;
 		dy = SPEED_BALL;
-
 	}
 
 	private void getNextPosition(Bound b) {
-
 		if (x < 0 || x > b.getWIDTH() - 30) {
+		   dx = dx * (-1);
+		}
+		if (y < 0 || y > b.getHEIGHT() - 30) {
+		   dy = dy * (-1);
+		}
+  
+		if(x+30>=b.getWx()&&x+30<=b.getWx()+10&&y+32>=b.getWy()){
+			dx = dx * (-1); 
+			if(dx<=0){
+				dx=dx-0.5;
+			}else{
+				dx=dx+0.5;
+			}
+		}else if(x+30>=b.getWx()&&x+30<=b.getWx()+10&&y+30>=b.getWy()){
+			dy = dy * (-1);
+			if(dy<=0){
+				dy=dy-0.5;
+			}else{
+				dy=dy+0.5;
+			}
+		}
 
-			   dx = dx * (-1);
-			  }
+		if(dx>=0&&dy>=0&&(x+30>=b.getP1x()&&y+30>=b.getP1y()&&x+30<=b.getP1x()+25)){
+			dx = dx * (-1);
+			dy = dy * (-1);
+			if(dy<=0){
+				dy=dy-0.5;
+			}else{
+				dy=dy+0.5;
+			}
+			if(dx<=0){
+				dx=dx-0.5;
+			}else{
+				dx=dx+0.5;
+			}
+		}
+		else if(dx<0&&dy>=0&&(x+30>=b.getP1x()&&y+30>=b.getP1y()&&x+30<=b.getP1x()+25)){
+			dy = dy * (-1);
+			if(dy<=0){
+				dy=dy-0.5;
+			}else{
+				dy=dy+0.5;
+			}
+		}else if(dx>=0&&dy>=0&&((x+30>=b.getP1x()+25)&&(y+30>=b.getP1y())&&(x+30<=b.getP1x()+50))){
+			dy = dy * (-1);
+			if(dy<=0){
+				dy=dy-0.5;
+			}else{
+				dy=dy+0.5;
+			}
+		}else if(dx<0&&dy>=0&&((x+30>=b.getP1x()+25)&&(y+30>=b.getP1y())&&(x+30<=b.getP1x()+50))){
+			dx = dx * (-1);
+			dy = dy * (-1);
+			if(dy<=0){
+				dy=dy-0.5;
+			}else{
+				dy=dy+0.5;
+			}
 
-			  if (y < 0 || y > b.getHEIGHT() - 30) {
-			   dy = dy * (-1);
-			   
-			  }
+			if(dx<=0){
+				dx=dx-0.5;
+			}else{
+				dx=dx+0.5;
+			}
+		}
 
 
-			  
-			  if(x+30>=b.getWx()&&x+30<=b.getWx()+10&&y+32>=b.getWy()){
-				  dx = dx * (-1); 
-				  
-				     if(dx<=0){
-				      dx=dx-0.5;
-				     }else{
-				      dx=dx+0.5;
-				     }
-			  }else if(x+30>=b.getWx()&&x+30<=b.getWx()+10&&y+30>=b.getWy()){
-				  dy = dy * (-1);
-				  if(dy<=0){
-				      dy=dy-0.5;
-				     }else{
-				      dy=dy+0.5;
-				     }
-			  }
-			  
-			  if(dx>=0&&dy>=0&&(x+30>=b.getP1x()&&y+30>=b.getP1y()&&x+30<=b.getP1x()+25)){
-				  dx = dx * (-1);
-				  dy = dy * (-1);
-				  if(dy<=0){
-				      dy=dy-0.5;
-				     }else{
-				      dy=dy+0.5;
-				     }
-				  
-				 
-				     if(dx<=0){
-				      dx=dx-0.5;
-				     }else{
-				      dx=dx+0.5;
-				     }
-			  }
-			  else if(dx<0&&dy>=0&&(x+30>=b.getP1x()&&y+30>=b.getP1y()&&x+30<=b.getP1x()+25)){
-				  dy = dy * (-1);
-				  if(dy<=0){
-				      dy=dy-0.5;
-				     }else{
-				      dy=dy+0.5;
-				     }
-			  }else if(dx>=0&&dy>=0&&((x+30>=b.getP1x()+25)&&(y+30>=b.getP1y())&&(x+30<=b.getP1x()+50))){
-				  dy = dy * (-1);
-				  if(dy<=0){
-				      dy=dy-0.5;
-				     }else{
-				      dy=dy+0.5;
-				     }
-			  }else if(dx<0&&dy>=0&&((x+30>=b.getP1x()+25)&&(y+30>=b.getP1y())&&(x+30<=b.getP1x()+50))){
-				  dx = dx * (-1);
-				  dy = dy * (-1);
-				  if(dy<=0){
-				      dy=dy-0.5;
-				     }else{
-				      dy=dy+0.5;
-				     }
-				  
-				  if(dx<=0){
-				      dx=dx-0.5;
-				     }else{
-				      dx=dx+0.5;
-				     }
-			  }
-			  
-			  
-			  if(dx>=0&&dy>=0&&(x+30>=b.getP2x()&&y+30>=b.getP2y()&&x+30<=b.getP2x()+25)){
-				  dx = dx * (-1);
-				  dy = dy * (-1);
-				  if(dy<=0){
-				      dy=dy-0.5;
-				     }else{
-				      dy=dy+0.5;
-				     }
-				  
-				  if(dx<=0){
-				      dx=dx-0.5;
-				     }else{
-				      dx=dx+0.5;
-				     }
-			  }
-			  else if(dx<0&&dy>=0&&(x+30>=b.getP2x()&&y+30>=b.getP2y()&&x+30<=b.getP2x()+25)){
-				  dy = dy * (-1);
-				  if(dy<=0){
-				      dy=dy-0.5;
-				     }else{
-				      dy=dy+0.5;
-				     }
-			  }else if(dx>=0&&dy>=0&&((x+30>=b.getP2x()+25)&&(y+30>=b.getP2y())&&(x+30<=b.getP2x()+50))){
-				  dy = dy * (-1);
-				  if(dy<=0){
-				      dy=dy-0.5;
-				     }else{
-				      dy=dy+0.5;
-				     }
-			  }else if(dx<0&&dy>=0&&((x+30>=b.getP2x()+25)&&(y+30>=b.getP2y())&&(x+30<=b.getP2x()+50))){
-				  dx = dx * (-1);
-				  dy = dy * (-1);
-				  if(dy<=0){
-				      dy=dy-0.5;
-				     }else{
-				      dy=dy+0.5;
-				     }
-				  
-				  if(dx<=0){
-				      dx=dx-0.5;
-				     }else{
-				      dx=dx+0.5;
-				     }
-			  }
-			  
+		if(dx>=0&&dy>=0&&(x+30>=b.getP2x()&&y+30>=b.getP2y()&&x+30<=b.getP2x()+25)){
+			dx = dx * (-1);
+			dy = dy * (-1);
+			if(dy<=0){
+				dy=dy-0.5;
+			}else{
+				dy=dy+0.5;
+			}
+			if(dx<=0){
+				dx=dx-0.5;
+			}else{
+				dx=dx+0.5;
+			}
+		}
+		else if(dx<0&&dy>=0&&(x+30>=b.getP2x()&&y+30>=b.getP2y()&&x+30<=b.getP2x()+25)){
+			dy = dy * (-1);
+			if(dy<=0){
+				dy=dy-0.5;
+			}else{
+				dy=dy+0.5;
+			}
+		}else if(dx>=0&&dy>=0&&((x+30>=b.getP2x()+25)&&(y+30>=b.getP2y())&&(x+30<=b.getP2x()+50))){
+			dy = dy * (-1);
+			if(dy<=0){
+				dy=dy-0.5;
+			}else{
+				dy=dy+0.5;
+			}
+		}else if(dx<0&&dy>=0&&((x+30>=b.getP2x()+25)&&(y+30>=b.getP2y())&&(x+30<=b.getP2x()+50))){
+			dx = dx * (-1);
+			dy = dy * (-1);
+			if(dy<=0){
+				dy=dy-0.5;
+			}else{
+				dy=dy+0.5;
+			}
 
+			if(dx<=0){
+				dx=dx-0.5;
+			}else{
+				dx=dx+0.5;
+			}
+		}
 		x += dx;
 		y += dy;		
-
 	}
 
 	public void setPosition(double x, double y) {
@@ -175,7 +157,6 @@ public class Ball  {
 	}
 
 	public void update(Bound b ,Player p1,Player p2 , Ball ball) {
-
 		if(y < b.getHEIGHT() - 30){
 			getNextPosition(b) ;
 			setPosition(x,y);
@@ -212,15 +193,9 @@ public class Ball  {
 	}
 
 	public void draw(Graphics2D g) {
-
 		g.drawImage(b,(int)x,(int)y,null);
-
 	}
 	
-		
-		
-	
-
 	public double getX() {
 		return x;
 	}
@@ -228,6 +203,5 @@ public class Ball  {
 	public double getY() {
 		return y;
 	}
-
 }
 

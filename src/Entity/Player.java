@@ -18,8 +18,7 @@ public class Player {
 
 	private BufferedImage p ;
 
-	public Player(int num) {		
-
+	public Player(int num) {
 		score = 0;
 		sb = new ScoreBoard();
 		this.num = num;
@@ -100,7 +99,6 @@ public class Player {
 		if(y > floor){
 			y=floor;
 		}
-
 	}
 
 	public void setPosition(double x, double y) {

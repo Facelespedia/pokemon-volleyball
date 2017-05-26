@@ -47,9 +47,6 @@ public class Bound {
 		return wX;
 	}
 	public double getWy() {
-		return wY;
-				
+		return wY;		
 	}
-	
- 		
 }

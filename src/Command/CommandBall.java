@@ -20,6 +20,4 @@ public class CommandBall {
 		b.setPosition(this.x, this.y);
 	}
 	
-
-
 }
