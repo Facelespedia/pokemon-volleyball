@@ -16,6 +16,7 @@ public class Ball  {
 	private BufferedImage b ;
 	private static final double SPEED_BALL = 1.5;
 	private double x,y,dx,dy;
+	private boolean restate = false;
 
 	public Ball() {
 
@@ -80,21 +81,25 @@ public class Ball  {
 		if(y < b.getHEIGHT() - 30){
 			getNextPosition(b) ;
 			setPosition(x,y);
+			restate = false;
 		}else {
 			if(x < b.getWIDTH()/2) {
 				p1.scoreUpdate();
-				p1.setPosition(20, 190);
-				ball.setPosition(0, 50);
 			}
 			else {
 				p2.scoreUpdate();
-				p2.setPosition(260, 190);
-				ball.setPosition(270, 50);
 			}
-			getNextPosition(b) ;
-			setPosition(x,y);
+			restate = true;
 		}
 
+	}
+	
+	public double randomXPos() {
+		return 5 + (Math.random() * (280 - 5));
+	}
+	
+	public boolean resetState() {
+		return restate;
 	}
 
 	public void draw(Graphics2D g) {

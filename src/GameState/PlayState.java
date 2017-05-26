@@ -34,7 +34,7 @@ public class PlayState extends GameState{
 	private long timeInGame;
 	private List<Command> commands = new ArrayList<Command>();
 	//	public static final long DELAY = 10;
-	public static final int sPosX1 = 20,sPosY1 = 190,sPosX2 = 260,sPosY2 = 190,sPosXb = 0,sPosYb=50,sPosXw=150,sPosYw=160;
+	public static final int sPosX1 = 20,sPosY1 = 190,sPosX2 = 260,sPosY2 = 190,sPosXb = 0,sPosYb=20,sPosXw=150,sPosYw=160;
 
 
 	public PlayState (GameStateManager gsm) {
@@ -62,13 +62,23 @@ public class PlayState extends GameState{
 	@Override
 	public void update() {
 		timeInGame = System.currentTimeMillis() - startTime;
+		
+		if(b.resetState()) {
+			resetState();
+		}
 		p1.update(bound);
 		p2.update(bound);
 		bound.update(p1.getX(), p1.getY(), p2.getX(), p2.getY());
 		b.update(bound,p1,p2,b);
 		System.out.println(timeInGame);
 	}
-
+	
+	public void resetState() {
+		b.setPosition(b.randomXPos(), sPosYb);
+		p1.setPosition(sPosX1, sPosY1);
+		p2.setPosition(sPosX2, sPosY2);
+	}
+	
 	public void startReplay() {
 		// TODO: Implement this method 
 //		world.reset();
