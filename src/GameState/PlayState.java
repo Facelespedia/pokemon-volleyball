@@ -169,7 +169,9 @@ public class PlayState extends GameState{
 		p2.draw(g);
 		b.draw(g);
 		w.draw(g);
-
+		if(!replay){
+			g.drawString("Replay", 140, 110);
+		}
 	}
 
 	@Override
