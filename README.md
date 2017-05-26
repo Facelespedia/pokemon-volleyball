@@ -1,7 +1,7 @@
 # Pokemon-Volleyball
-  5810546650  Nuttapatprom CHongamorkulprapa
-  5810545858  Narongsak Chobsri
-  5810545025  Rommadon Teedo
+  * 5810546650  Nuttapatprom CHongamorkulprapa
+  * 5810545858  Narongsak Chobsri
+  * 5810545025  Rommadon Teedo
 ## Thing to do
 * main menu -> ทำแล้ว Narongsak
 * game scree สร้างหน้าเกม -> ทำแล้ว Narongsak
