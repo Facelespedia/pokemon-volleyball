@@ -3,23 +3,18 @@ package Command;
 import Entity.Player;
 
 public class CommandLeft extends Command{
-
-	public CommandLeft(long timeInGame) {
-		super(timeInGame);
+	
+	private boolean status;
+	public CommandLeft(long timeInGame,boolean status) {
+		super(timeInGame,status);
 		// TODO Auto-generated constructor stub
 	}
 
 	@Override
-	public void execute(Player p,boolean status) {
+	public void execute(Player p) {
 		// TODO Auto-generated method stub
-		p.setLeft(status);
+		p.setLeft(super.getStatus());
 		
 	}
-
-//	@Override
-//	public void Noexecute(Player p) {
-//		// TODO Auto-generated method stub
-//		p.setLeft(false);
-//	}
 
 }

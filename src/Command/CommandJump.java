@@ -3,22 +3,19 @@ package Command;
 import Entity.Player;
 
 public class CommandJump extends Command{
+	
 
-	public CommandJump(long timeInGame) {
-		super(timeInGame);
+	public CommandJump(long timeInGame,boolean status) {
+		super(timeInGame,status);
 		// TODO Auto-generated constructor stub
 	}
 
 	@Override
-	public void execute(Player p,boolean status) {
+	public void execute(Player p) {
 		// TODO Auto-generated method stub
-		p.setUp(status);
+		p.setUp(super.getStatus());
 	}
 
-//	@Override
-//	public void Noexecute(Player p) {
-//		// TODO Auto-generated method stub
-//		p.setUp(false);
-//	}
+
 
 }
