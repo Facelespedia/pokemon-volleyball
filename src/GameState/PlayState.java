@@ -30,7 +30,7 @@ public class PlayState extends GameState{
 	Bound bound;
 	Command cm;
 	CommandBall cb;
-	private int scoreP1,scoreP2, count = 0 ;
+	private int scoreP1,scoreP2;
 	boolean end;
 	boolean replay;
 	private long timeInGame;
@@ -39,7 +39,7 @@ public class PlayState extends GameState{
 	private List<CommandBall> commandsBall = new ArrayList<CommandBall>();
 
 	public static final long DELAY = 10;
-	public static final int sPosX1 = 20,sPosY1 = 210,sPosX2 = 260,sPosY2 = 210,sPosXb=0,sPosX2b=280,sPosYb=20,sPosXw=150
+	public static final int sPosX1 = 20,sPosY1 = 210,sPosX2 = 260,sPosY2 = 210,sPosXb=0,sPosYb=20,sPosXw=150
 			,sPosYw=160,sPosSX1=280,sPosSY1=20,sPosSX2=20,sPosSY2=20;
 
 	public PlayState (GameStateManager gsm) {
@@ -70,18 +70,8 @@ public class PlayState extends GameState{
 	@Override
 	public void update() {
 
-		if(p1.getScore() < 2 && p2.getScore() < 2 && end) {	
+		if(p1.getScore() < 3 && p2.getScore() < 3 && end) {	
 			if(b.resetState()) {
-				if(count%2 == 0){
-					cb = new CommandBall(timeInGame,sPosXb,sPosYb);
-					commandsBall.add(cb);
-					b.setPosition(sPosXb, sPosYb);
-				}else{
-					cb = new CommandBall(timeInGame,sPosX2b,sPosYb);
-					commandsBall.add(cb);
-					b.setPosition(sPosX2b, sPosYb);
-				}
-				count++;
 				resetState();
 				b.setState(false);
 			}else {
@@ -115,6 +105,10 @@ public class PlayState extends GameState{
 	public void resetState() {
 		p1.setPosition(sPosX1, sPosY1);
 		p2.setPosition(sPosX2, sPosY2);
+		cb = new CommandBall(timeInGame,sPosXb,sPosYb);
+		commandsBall.add(cb);
+		b.setPosition(sPosXb, sPosYb);
+
 	}
 
 	public void startPlay() {
