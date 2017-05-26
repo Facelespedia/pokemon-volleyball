@@ -1,10 +1,11 @@
 package Command;
 
-import Entity.Player;
+import Entity.Ball;
 
-public abstract class CommandBall {
+public class CommandBall {
 
 	private long timeInGame;
+	private int x,y;
 
 	public CommandBall(long timeInGame) {
 		this.timeInGame = timeInGame;
@@ -13,7 +14,15 @@ public abstract class CommandBall {
 	public long getTimeInGame() {
 		return timeInGame;
 	}
-	public abstract void execute(Player p,boolean status);
-//	public abstract void Noexecute(Player p);
+	public void execute(Ball b) {
+		b.setPosition(x, y);
+	}
+	
+	public void set(int x ,int y) {
+		this.x = x;
+		this.y = y;
+	}
+	
+
 
 }
