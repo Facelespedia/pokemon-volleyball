@@ -12,7 +12,7 @@ public class Player {
 	private boolean left;
 	private boolean right;
 	private boolean up;
-
+	private int floor = 210;
 	private ScoreBoard sb;
 	private int score,num;
 
@@ -90,15 +90,15 @@ public class Player {
 		if( dy < 0 ) dy += FRICTIONUP;
 		if( dy > 0 ) dy -= FRICTIONUP;
 		
-		if(dy == 0 && y < 190 ) {
+		if(dy == 0 && y < floor ) {
 			dy = SPEEDUP;
 		}
 		
 		x = (int)x + dx;
 		y = (int)y + dy;
 		
-		if(y > 190){
-			y=190;
+		if(y > floor){
+			y=floor;
 		}
 
 	}
