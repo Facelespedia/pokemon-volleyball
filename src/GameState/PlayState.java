@@ -1,7 +1,6 @@
 package GameState;
 
-import java.awt.Color;
-import java.awt.Font;
+
 import java.awt.Graphics2D;
 
 import java.awt.event.KeyEvent;
@@ -16,7 +15,6 @@ import Command.CommandRight;
 import Entity.Ball;
 import Entity.Bound;
 import Entity.Player;
-import Entity.ScoreBoard;
 import Entity.Wall;
 import Main.GamePanel;
 import Map.Background;
@@ -171,7 +169,9 @@ public class PlayState extends GameState{
 		p2.draw(g);
 		b.draw(g);
 		w.draw(g);
-
+		if(!replay){
+			g.drawString("Replay", 140, 110);
+		}
 	}
 
 	@Override
