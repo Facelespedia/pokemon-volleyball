@@ -2,6 +2,12 @@
   * 5810546650  Nuttapatprom CHongamorkulprapa github id : ntpbright , Ntp chong
   * 5810545858  Narongsak Chobsri
   * 5810545025  Rommadon Teedo
+#pattern
+  * STATE PATTERN
+  * COMMAND PATTERN
+#PRINCIPLE
+  * OPEN CLOSE PRINCIPLE
+  * HIGH COHESION
 ## Thing to do
 * main menu -> ทำแล้ว Narongsak
 * game scree สร้างหน้าเกม -> ทำแล้ว Narongsak
