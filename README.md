@@ -18,7 +18,7 @@
 * end screen จบเกม -> ทำแล้ว Rommadon Nuttapatprom
 * how to สร้างหน้าแนะนำวิธีเล่น -> ทำแล้ว Rommadon
 ## Require อาจารย์ต้องการ
-* replay -> เกือบแล้ว Narongsak Rommadon Nuttapatprom
+* replay -> ทำแล้ว Narongsak Rommadon Nuttapatprom
 ## feature ถ้าทันเวลาค่อยทำ
 * Animation of player อนิเมชั่นตัวละคร -> ยังไม่ได้ทำ
 * Animation ball อนิเมชั่นบอล -> ยังไม่ได้ทำ
