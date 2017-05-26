@@ -1,5 +1,5 @@
 # Pokemon-Volleyball
-  * 5810546650  Nuttapatprom CHongamorkulprapa
+  * 5810546650  Nuttapatprom CHongamorkulprapa github id : ntpbright , Ntp chong
   * 5810545858  Narongsak Chobsri
   * 5810545025  Rommadon Teedo
 ## Thing to do
