@@ -11,12 +11,11 @@ public class Wall {
 	BufferedImage w ;
 	
 	public Wall() {
-
 		try {
 
 			w = ImageIO.read(
 					getClass().getResourceAsStream(
-							"/Wall/wall.jpg"
+							"/Wall/wall.png"
 							)
 					);
 
@@ -41,17 +40,12 @@ public class Wall {
 	}
 	
 	public void update() {
-
 		setPosition(x,y);
-
 	}
 
 
 	public void draw(Graphics2D g) {
-
 		g.drawImage(w,(int)x,(int)y,null);
-
-
 	}
 
 }

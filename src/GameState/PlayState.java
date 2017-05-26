@@ -30,9 +30,11 @@ public class PlayState extends GameState{
 	Ball b;
 	Wall w;
 	Bound bound;
-	int scoreP1,scoreP2;
 	Command cm;
 	CommandBall cb;
+	int scoreP1,scoreP2;
+	boolean end;
+	boolean replay;
 	private long startTime;
 	private long timeInGame;
 	private List<Command> commandsP1 = new ArrayList<Command>();
@@ -62,10 +64,11 @@ public class PlayState extends GameState{
 		w = new Wall();
 		w.setPosition(sPosXw, sPosYw);
 		bound = new Bound(gp.WIDTH,gp.HEIGHT,p1.getX(),p1.getY(),p2.getX(),p2.getY(),w.getX(),w.getY());
+		end = true;
+		replay = true;
 	}
 
-	boolean end =true;
-	boolean replay = true;
+
 	@Override
 	public void update() {
 
